@@ -1,27 +1,21 @@
  function userData() {
    return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
      .then(response => response.json())
-     .then(data => {
-       return data.users;
-     })
-     .catch(error => console.log(error);
+     .then(data => data.users)
+     .catch(error => console.log(error));
 }
 
 function roomData() {
   return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
     .then(response => response.json())
-    .then(data => {
-      return data.rooms;
-    })
+    .then(data => data.rooms)
     .catch(error => console.log(error))
 }
 
 function bookingData() {
   return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
     .then(response => response.json())
-    .then(data => {
-      return data.bookings;
-    })
+    .then(data => data.bookings)
     .catch(error => console.log(error))
 }
 
@@ -33,6 +27,8 @@ function getApiData() {
       allData.rooms = response[1];
       allData.bookings = response[2];
       return allData;
-  });
-  // .catch(error => console.log(error))
+  })
+    .catch(error => console.log(error))
 }
+
+export default getApiData;
