@@ -16,7 +16,7 @@
         <form id="login-form">
           <input id="username-input" class="login-input" type="text" placeholder="Username">
           <input id="password-input" class="login-input" type="text" placeholder="Password">
-          <button type="button" id="login-button">Sign in</button>
+          <button type="button" id="login-button" aria-label='Submit loginin information'>Sign in</button>
         </form>
       </article>
     </section>
@@ -29,9 +29,15 @@
             <input type="date" class="booking-input" id="arrival-date-input" placeholder="mm/dd/yyyy">
             <label class="future-date-text" for="departure-date-input">Departure date:<label>
             <input type="date" class="booking-input" id="departure-date-input" placeholder="mm/dd/yyyy">
-            <button type="button" id="customer-search-dates-button" aria-label='Add Sleep'>Search availability</button>
+            <button type="button" id="customer-search-dates-button" aria-label='Add search Dates'>Search availability</button>
          </section>
-         
+         <select class"room-select" type="text" id="room-filter">
+           <option value="all rooms">All Room Types</option>
+           <option value="residential suite">Residential Suite</option>
+           <option value="suite">Suite</option>
+           <option value="single room">Single Room</option>
+           <option value="junior suite">Junior Suite</option>
+         </select>
       </article>
     </section>
     </main>
