@@ -1,10 +1,11 @@
 const expect = chai.expect;
 import chai from 'chai';
 import User from '../src/Manager.js';
+import Manager from '../src/Manager.js';
 
 describe('Manager', () => {
   let manager;
-  let user;
+  let users;
 
   beforeEach(function () {
     users = [{
@@ -20,8 +21,21 @@ describe('Manager', () => {
         "name": "Kelvin Schiller"
       }
     ];
-    user = new User(users[0]);
-    user2 = new User(users[1]);
+    manager = new Manager(users);
 })
+
+  it('should be a function', function () {
+    expect(Manager).to.be.a('function');
+  });
+
+  it('should be an instance of User', function () {
+    expect(manager).to.be.an.instanceof(Manager);
+  });
+
+  it('should have a property of users', function () {
+    expect(manager.users.length).to.equal(3);
+  });
+
+
 })
 
