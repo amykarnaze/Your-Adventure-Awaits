@@ -1,7 +1,13 @@
+@import 'variables-mixins';
+@import 'login';
+@import 'guest-dashboard';
+@import 'manager-dashboard';
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+
 
 body {
   background: $primary-background;
 }
+
