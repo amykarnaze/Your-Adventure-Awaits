@@ -1,0 +1,24 @@
+#login-page-id {
+  text-align: center;
+}
+
+#login-form {
+  @include flex(column);
+}
+
+.login-input {
+  width: 35%;
+  margin: .10vh;
+  padding: .6vh;
+  font-size: 1em;
+  border: 1px solid black;
+  border-radius: 7px;
+  font-weight: 300;
+  align-self: center;
+}
+
+.login-input:hover,
+.login-input:focus {
+  background-color: magenta;
+  color: black;
+}
