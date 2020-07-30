@@ -4,7 +4,7 @@
      .then(data => {
        return data.users;
      })
-     .catch(err => console.log(err.message));
+     .catch(error => console.log(error);
 }
 
 function roomData() {
@@ -13,7 +13,7 @@ function roomData() {
     .then(data => {
       return data.rooms;
     })
-    .catch(err => console.log(err.message))
+    .catch(error => console.log(error))
 }
 
 function bookingData() {
@@ -22,7 +22,17 @@ function bookingData() {
     .then(data => {
       return data.bookings;
     })
-    .catch(err => console.log(err.message))
+    .catch(error => console.log(error))
 }
 
-
+function getApiData() {
+  Promise.all([userData(), roomData(), bookingData()])
+  .then(response => {
+    let allData = {}
+    allData.users = response[0];
+    allData.rooms = response[1];
+    allData.bookings = response[2];
+    return allData;
+  });
+  .catch(error => console.log(error))
+}
