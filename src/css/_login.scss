@@ -1,4 +1,5 @@
 #login-page-id {
+  // @include main-page-background;
   text-align: center;
 }
 
@@ -22,3 +23,17 @@
   background-color: magenta;
   color: black;
 }
+
+#login-button {
+  align-self: center;
+  width: 20%;
+  margin: 20p;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 7px;
+  background-color: white;
+  color: blackr;
+  font-size: 10px;
+}
+
+
