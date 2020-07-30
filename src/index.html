@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Adventure Awaits</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
+    <header>
+      <h1>Beacon</h1>
+    </header>
     <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+    <main>
+    <section class="login-page-flex" id="login-page-id">
+      <article class="login-container">
+        <h2>Your Adventure Awaits</h2>
+        <form id="login-form">
+          <input id="username-input" class="login-input" type="text" placeholder="Username">
+          <input id="password-input" class="login-input" type="text" placeholder="Password">
+          <button type="button" id="login-button">Sign in</button>
+        </form>
+      </article>
+    </section>
+    
+    </main>
   </body>
 </html>
