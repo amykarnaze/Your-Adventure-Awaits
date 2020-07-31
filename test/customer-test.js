@@ -49,4 +49,10 @@ describe('customer', () => {
     expect(customer2.name).to.equal("Rocio Schuster");
   });
 
+  it('should have a list of bookings', function () {
+    expect(customer.bookings).to.deep.equal([]);
+  });
+
+
+
 })
