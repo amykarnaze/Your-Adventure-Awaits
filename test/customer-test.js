@@ -9,16 +9,16 @@ describe('customer', () => {
   beforeEach(function () {
     customers = [
       {
-        "id": 1,
-        "name": "Leatha Ullrich"
+        'id': 1,
+        'name': 'Leatha Ullrich'
       },
       {
-        "id": 2,
-        "name": "Rocio Schuster"
+        'id': 2,
+        'name': 'Rocio Schuster'
       },
       {
-        "id": 3,
-        "name": "Kelvin Schiller"
+        'id': 3,
+        'name': 'Kelvin Schiller'
       }
     ];
     customer = new Customer(customers[0]);
@@ -46,7 +46,7 @@ describe('customer', () => {
   });
 
   it('should be able to have a different name', function () {
-    expect(customer2.name).to.equal("Rocio Schuster");
+    expect(customer2.name).to.equal('Rocio Schuster');
   });
 
   it('should have a list of bookings', function () {
@@ -56,6 +56,22 @@ describe('customer', () => {
   it('should have property of total money spent', function () {
     expect(customer.totalAmountSpent).to.equal(0);
   });
+
+  it('should have a username', function () {
+    expect(customer.username).to.equal('customer1');
+  });
+
+  it('should have a password', function () {
+    expect(customer.password).to.equal('overlook2020');
+  });
+
+  it('should get a first name', function () {
+    expect(customer.getFirstName()).to.equal('Leatha');
+  });
+
+  // it('get customer id', function () {
+  //   expect(customer.getCustomerId).to.equal(1);
+  // });
 
 
 

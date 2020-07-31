@@ -4,8 +4,14 @@ class Customer {
    this.name = customerData.name;
    this.bookings = [];
    this.totalAmountSpent = 0;
- }
+   this.userName = `customer${customerData.id}`;
+   this.password = 'overlook2020';
+  }
 
+ getFirstName() {
+  let firstName = this.name.split(' ');
+  return firstName[0];
+ }
 }
 
 export default Customer;
