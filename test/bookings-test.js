@@ -23,4 +23,24 @@ describe('Booking', function () {
     });
   });
 
+  it('should be an instance of Booking', function () {
+    expect(booking).to.be.an.instanceOf(Booking);
+  });
+
+  it('should return booking id', function () {
+    expect(booking.id).to.equal('5fwrgu4i7k55hl6sz');
+  });
+
+  it('should be able to have a different booking id', function () {
+    expect(booking2.id).to.equal('5fwrgu4i7k55hl6t5');
+  });
+
+  it('should return the booking userID', function () {
+    expect(booking.userID).to.equal(9);
+  });
+
+  it('should be able to have a diffenrent booking userID', function () {
+    expect(booking2.userID).to.equal(43);
+  });
+
   
