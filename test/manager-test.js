@@ -1,14 +1,14 @@
 const expect = chai.expect;
 import chai from 'chai';
-import User from '../src/Manager.js';
+import Customer from '../src/Customer.js';
 import Manager from '../src/Manager.js';
 
 describe('Manager', () => {
   let manager;
-  let users;
+  let customers;
 
   beforeEach(function () {
-    users = [{
+    customers = [{
         "id": 1,
         "name": "Leatha Ullrich"
       },
@@ -21,7 +21,7 @@ describe('Manager', () => {
         "name": "Kelvin Schiller"
       }
     ];
-    manager = new Manager(users);
+    manager = new Manager(customers);
 })
 
   it('should be a function', function () {
@@ -33,9 +33,14 @@ describe('Manager', () => {
   });
 
   it('should have a property of users', function () {
-    expect(manager.users.length).to.equal(3);
+    expect(manager.customers.length).to.equal(3);
   });
 
-
+  it('should be able to search customers by name', function () {
+    expect(manager.searchCustomerByName('Leatha Ullrich')).to.deep.equal([{
+      id: 1,
+      name: 'Leatha Ullrich'}])
+    })
 })
+
 

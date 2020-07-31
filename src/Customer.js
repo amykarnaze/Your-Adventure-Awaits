@@ -1,19 +1,19 @@
-class User {
- constructor(user) {
-   this.id = user.id;
-   this.name = user.name
+class Customer {
+ constructor(customer) {
+   this.id = customer.id;
+   this.name = customer.name
  }
 
 }
 
-export default User;
+export default Customer;
 
-// what do I want my user class to do?
-// I want user be a parent class bc there are 2 types of users- customer and manager
+// what do I want my customer class to do?
+// I want customer be a parent class bc there are 2 types of customers- customer and manager
 // include an id and name properties
-// what else should a user have?
+// what else should a customer have?
 
-// "users": [{
+// "customers": [{
 //     "id": 1,
 //     "name": "Leatha Ullrich"
 //   },
@@ -29,7 +29,7 @@ export default User;
 
 // "bookings": [{
 //     "id": "5fwrgu4i7k55hl6sz",
-//     "userID": 9,
+//     "customerID": 9,
 //     "date": "2020/04/22",
 //     "roomNumber": 15,
 //     "roomServiceCharges": []
