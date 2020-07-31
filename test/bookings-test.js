@@ -43,4 +43,23 @@ describe('Booking', function () {
     expect(booking2.userID).to.equal(43);
   });
 
-  
+  it('should have a booking date', function () {
+    expect(booking.date).to.equal('2020/02/04');
+  });
+
+  it('should be able to have another booking date', function () {
+    expect(booking2.date).to.equal('2020/01/24');
+  });
+
+  it('should have a booking room number', function () {
+    expect(booking.roomNumber).to.equal(15);
+  });
+
+  it('should be able to have a different booking room number', function () {
+    expect(booking2.roomNumber).to.equal(24);
+  });
+
+  it('should return the booking room service charges', function () {
+  expect(booking.roomServiceCharges).to.deep.equal([]);
+  });
+});
