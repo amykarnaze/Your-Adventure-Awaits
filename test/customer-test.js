@@ -53,6 +53,10 @@ describe('customer', () => {
     expect(customer.bookings).to.deep.equal([]);
   });
 
+  it('should have property of total money spent', function () {
+    expect(customer.totalAmountSpent).to.equal(0);
+  });
+
 
 
 })

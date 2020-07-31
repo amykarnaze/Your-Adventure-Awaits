@@ -3,6 +3,7 @@ class Customer {
    this.id = customerData.id;
    this.name = customerData.name;
    this.bookings = [];
+   this.totalAmountSpent = 0;
  }
 
 }
