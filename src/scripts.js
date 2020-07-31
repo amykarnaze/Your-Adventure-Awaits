@@ -1,7 +1,7 @@
 
 import getApiData from './api';
 import './css/base.scss';
-import User from './User';
+import User from './Customer';
 
 // function getData()
 
