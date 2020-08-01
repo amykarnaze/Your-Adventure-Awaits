@@ -49,13 +49,16 @@ function managerLogin(){
 }
 
 function displayManagerView() {
-  let todaysBooking = document.querySelector('.display-bookings-for-today');
+  let todaysBooking = document.querySelector('.bookings-for-today');
   todaysBooking.classList.remove('hide');
   document.querySelector('.manager-view').classList.remove('hide')
   console.log('manager', manager)
   manager.todaysBookings.forEach(booking =>
 
-  {todaysBooking.insertAdjacentHTML("afterbegin", `<h1>${booking.id}</h1>`)})
+  {todaysBooking.insertAdjacentHTML("afterbegin", 
+  `<h1>Today's total Revenue</h1>
+  <p>${booking.id}</p>
+  `)})
 }
 
 function hideLogin() {
@@ -78,11 +81,11 @@ function findUserById(id) {
 }
 
 function findUserByName(name) {
-    return hotelData.users.find(user => user.name.toLowerCase() == name.toLowerCase());
+  return hotelData.users.find(user => user.name.toLowerCase() == name.toLowerCase());
 
 }
 
-document.querySelector('.findUserButton').addEventListener('click', setManagerCustomerLookup);
+document.querySelector('.search-customer-button').addEventListener('click', setManagerCustomerLookup);
 
 function setManagerCustomerLookup() {
   let name = document.querySelector('.findUser').value;
