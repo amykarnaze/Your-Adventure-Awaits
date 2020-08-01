@@ -20,27 +20,27 @@
         </form>
       </article>
     </section>
-    <section class="customer-view  hide">
-      <article class='customer-booking-container'>
+    <section class="customer-view">
+      <article class='customer-booking-container hide'>
         <h1 class="user-welcome"></h1>
         <h2 class="customer-name"></h2>
-         <section id="customer-select-dates-container">
+         <section class="customer-select-dates-container">
             <label class="future-date-text" for="arrival-date-input">Arrival date:<label>
             <input type="date" class="booking-input" id="date-input" placeholder="mm/dd/yyyy">
             <!-- <label class="future-date-text" for="departure-date-input">Departure date:<label>
             <input type="date" class="booking-input" id="departure-date-input" placeholder="mm/dd/yyyy"> -->
             <button type="button" id="customer-search-dates-button" aria-label='Add search Dates'>Search availability</button>
+            <select class"room-select" type="text" id="room-filter">
          </section>
-         <select class"room-select" type="text" id="room-filter">
            <option value="all rooms">All Room Types</option>
            <option value="residential suite">Residential Suite</option>
            <option value="suite">Suite</option>
            <option value="single room">Single Room</option>
            <option value="junior suite">Junior Suite</option>
          </select>
-         <section id="customer-available-rooms-container">
+         <section class="customer-available-rooms-container">
          </section>
-         <section id="customer-trips-container">
+         <section class="customer-trips-container">
            <h2 class="customer-header">View your upcoming reservations:<button
                id="refresh-trips-button">Refresh</button></h2>
            <section id="future-reservations-container">
@@ -52,17 +52,21 @@
            </section>
            <button id="view-more-past-trips-button">Load more trips</button>
          </section>
-         <section id="customer-finances-container">
+         <section class="customer-finances-container">
            <h2 class="customer-header">Financial History:</h2>
            <section id="customer-spending-history-container">
            </section>
          </section>
-         <section class="manger-view">
-           <input type="<text>" class="findUser" value="Leatha Ullrich">
-           <button class="findUserButton">Find User</button>
-         </section>
-      </article>
     </section>
+    </article>
+    <section class="manager-view hide">
+      <input type="<text>" class="findUser" value="Leatha Ullrich">
+      <button class="findUserButton">Find User</button>
+      <section class="display-bookings-for-today"></section>
+      <button class="log-out">Log Out</button>
+    </section>
+      
+    <!-- </section> -->
     </main>
   </body>
 </html>
