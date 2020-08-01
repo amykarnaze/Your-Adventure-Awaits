@@ -1,6 +1,12 @@
 class Manager {
   constructor(customers) {
+    this.currentCustomer = {};
     this.customers = customers;
+  }
+
+  setCurrentCustomer(customer) {
+    // let foundCustomer = this.customers.find(customer => customer.name.toLowerCase() === name.toLowerCase())
+    this.currentCustomer = customer;
 
   }
 
