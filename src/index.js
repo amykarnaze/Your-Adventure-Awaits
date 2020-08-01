@@ -13,14 +13,14 @@ import Customer from './Customer';
 import Manager from './Manager';
 
 // function getData()
-
+let currentDate = "2020/04/22";
 let manager;
 let currentUser;
 let hotelData;
 
 getApiData().then(allData => {
   hotelData = allData;
-  // console.log('allData', allData)
+  console.log('allData', allData)
   return allData;
 })
 
@@ -37,18 +37,30 @@ function handleSubmit(event) {
   if (userLogin.toLowerCase().includes('customer') && password === 'overlook2020') {
     customerLogin(userLogin)
   }
-  
 }
-
 // reduce(a, b) => a + b;
 
 function managerLogin(){
-  manager = new Manager(hotelData.users)
-  console.log('Mclick')
-  // hideLogin();
-  // displayManagerView()
+  manager = new Manager(hotelData.users, hotelData.rooms, hotelData.bookings, currentDate);
+  console.log('Mclick', manager)
+  hideLogin();
+  displayManagerView()
+  // 
 }
 
+function displayManagerView() {
+  let todaysBooking = document.querySelector('.display-bookings-for-today');
+  todaysBooking.classList.remove('hide');
+  document.querySelector('.manager-view').classList.remove('hide')
+  console.log('manager', manager)
+  manager.todaysBookings.forEach(booking =>
+
+  {todaysBooking.insertAdjacentHTML("afterbegin", `<h1>${booking.id}</h1>`)})
+}
+
+function hideLogin() {
+  document.querySelector('.login-container').classList.add('hide');
+}
 
 function customerLogin(customerInput) {
   let customerId = customerInput.substring(8);
@@ -80,6 +92,23 @@ function setManagerCustomerLookup() {
   console.log(manager.currentCustomer.totalAmountSpent)
 }
 
+const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
+function logOut() {
+  document.querySelector('.manager-view').classList.add('hide')
+  document.querySelector('.login-container').classList.remove('hide')
+}
+// revenue
+// when know todays bookings, you can use infor to cross ref and get info from rooms
+// know rooms that have been booked, iterate rooms array, grab cost
+// iterate through w reduce to increment sum
+
+// Percentage of rooms occupied for today’s date
+// rooms booked 
+
+//look into adding to manager class? Todays available rooms and used to calculate percentage
+
+
+// when manager logs in 
 // hide login
 // display customer login
 // display manager login
