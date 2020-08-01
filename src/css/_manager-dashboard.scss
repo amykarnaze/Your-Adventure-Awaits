@@ -1,0 +1,39 @@
+.manager-view {
+  display: flex;
+  border: solid 1px black;
+  background-color: salmon;
+}
+
+.search-for-customer {
+  height: 5em;
+  width: 15em;
+  .search-customer-button {
+    
+  }
+}
+
+.info-today-container {
+  display: flex;
+}
+
+.total-bookings-for-today {
+  justify-content: flex-start;
+    height: 25em;
+    width: 25em;
+
+}
+  .revenue-for-today {
+    border: solid 1em greenyellow;
+    // display: flex;
+    justify-content: flex-start;
+    height: 25em;
+    width: 25em;
+  }
+
+  .percent-booked-today {
+    // display: flex;
+    justify-content: flex-start;
+    height: 25em;
+    width: 25em;
+  }
+  
