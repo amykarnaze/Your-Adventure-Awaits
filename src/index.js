@@ -44,21 +44,46 @@ function managerLogin(){
   manager = new Manager(hotelData.users, hotelData.rooms, hotelData.bookings, currentDate);
   console.log('Mclick', manager)
   hideLogin();
+  switchToManagerView();
   displayManagerView()
   // 
 }
 
-function displayManagerView() {
-  let todaysBooking = document.querySelector('.bookings-for-today');
+let todaysBooking = document.querySelector('.total-bookings-for-today');
+
+function switchToManagerView() {
   todaysBooking.classList.remove('hide');
   document.querySelector('.manager-view').classList.remove('hide')
   console.log('manager', manager)
-  manager.todaysBookings.forEach(booking =>
+}
+  // todays
+function displayManagerView() {
+  displayManagerRoomsBooked();
+  displayPercentageBooked();
+  displayTodaysRevenue()
+}
 
-  {todaysBooking.insertAdjacentHTML("afterbegin", 
-  `<h1>Today's total Revenue</h1>
-  <p>${booking.id}</p>
-  `)})
+function displayManagerRoomsBooked() {
+  manager.todaysBookings.forEach(booking =>
+  todaysBooking.insertAdjacentHTML("afterbegin", 
+  `<h1>${booking.roomNumber}</h1>
+  `))
+}
+
+function displayPercentageBooked() {
+  let percentBooked = document.querySelector('.percent-booked-today');
+  manager.todaysBookings.forEach(booking =>
+  percentBooked.insertAdjacentHTML("afterbegin", 
+  `<h1>${booking.roomNumber}</h1>
+  `))
+}
+
+function displayTodaysRevenue() {
+  let todaysRevenue = document.querySelector('.revenue-for-today');
+  manager.todaysBookings.forEach(booking =>
+  todaysRevenue.insertAdjacentHTML("afterbegin", 
+  `<h1>${booking.roomNumber}</h1>
+  `))
 }
 
 function hideLogin() {
