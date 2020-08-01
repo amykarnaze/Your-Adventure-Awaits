@@ -1,7 +1,11 @@
 class Manager {
-  constructor(customers) {
+  constructor(customers, rooms, bookings, date) {
     this.currentCustomer = {};
     this.customers = customers;
+    this.rooms = rooms;
+    this.bookings = bookings;
+    this.date = date;
+    this.todaysBookings = this.searchForBookingsForToday();
   }
 
   setCurrentCustomer(customer) {
@@ -19,6 +23,14 @@ class Manager {
     })
   }
 // do I want the object returned or an array?
+  searchForBookingsForToday() {
+// current date and filter for that date in bookings array
+    return this.bookings.filter(booking => {
+      return booking.date === "2020/04/22"
+    });
+    console.log('today', this.todaysBookings)
+  }
+
 
 }
 
