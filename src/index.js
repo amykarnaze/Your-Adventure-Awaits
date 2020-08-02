@@ -72,10 +72,11 @@ function displayManagerRoomsBooked() {
 
 function displayPercentageBooked() {
   let percentBooked = document.querySelector('.percent-booked-today');
-  manager.todaysBookings.forEach(booking =>
+  // manager.todaysBookings.forEach(booking =>
   percentBooked.insertAdjacentHTML("afterbegin", 
-  `<h1>${booking.roomNumber}</h1>
-  `))
+  `<h1>${manager.percentBookings}</h1>
+  `)
+  // )
 }
 
 function displayTodaysRevenue() {

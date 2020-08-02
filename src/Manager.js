@@ -7,6 +7,7 @@ class Manager {
     this.date = date;
     this.todaysBookings = this.searchForBookingsForToday();
     this.todaysRevenue = this.getTodaysRevenue(bookings, rooms, date);
+    this.percentBookings = this.calculatePercentOccupiedToday(bookings, rooms, date)
   }
 
   setCurrentCustomer(customer) {
@@ -46,6 +47,14 @@ class Manager {
       return Number(revenue.toFixed(2));
     }
 
+  calculatePercentOccupiedToday(bookings, rooms, date) {
+    let todayBookings = bookings.filter(
+      booking => booking.date === date).length;
+    let percentageRoomsOccupiedToday =
+      (todayBookings / rooms.length) * 100;
+      console.log(percentageRoomsOccupiedToday)
+    return Number(percentageRoomsOccupiedToday.toFixed(2));
+  }
 
 }
 
