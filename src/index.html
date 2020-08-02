@@ -7,8 +7,10 @@
   <body>
     <header>
       <h1>Beacon</h1>
+      <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+      <button class="log-out">Log Out</button>
     </header>
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+
     <main>
     <section class="login-page-flex" id="login-page-id">
       <article class="login-container">
@@ -21,7 +23,7 @@
       </article>
     </section>
     <section class="customer-view">
-      <article class='customer-booking-container hide'>
+      <section class='customer-booking-container hide'>
         <h1 class="user-welcome"></h1>
         <h2 class="customer-name"></h2>
          <section class="customer-select-dates-container">
@@ -37,7 +39,6 @@
            <option value="suite">Suite</option>
            <option value="single room">Single Room</option>
            <option value="junior suite">Junior Suite</option>
-         </select>
          <section class="customer-available-rooms-container">
          </section>
          <section class="customer-trips-container">
@@ -57,20 +58,20 @@
            <section id="customer-spending-history-container">
            </section>
          </section>
+      </section>
     </section>
-    </article>
+    </section>
     <section class="manager-view hide">
-      <h1 class="manager-header-text><View your stats</h1>
+      <h2 class="manager-header-text">View your stats</h2>
+      <section class="info-today-container">
+        <section class="total-bookings-for-today"></section>
+        <section class="revenue-for-today"></section>
+        <section class="percent-booked-today"></section>
+      </section>
       <article class="search-for-customer">Search For Customer
         <input type="<text>" class="findUser" value="Leatha Ullrich">
         <button class="search-customer-button">Find User</button>
       </article>
-      <seciton class="info-today-container">
-        <section class="total-bookings-for-today"></section>
-        <section class="revenue-for-today"></section>
-        <section class="percent-booked-today"></section>
-        <button class="log-out">Log Out</button>
-      </section>
     </section>
       
     <!-- </section> -->
