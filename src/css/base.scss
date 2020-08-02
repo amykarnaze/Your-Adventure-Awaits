@@ -5,11 +5,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 /* This is an example of using Sass, otherwise plain CSS works too*/
-
+html {
+  height: 100%
+}
 
 body {
   background: $primary-background;
+  margin: 0;
+  height: 100%;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  
+  .log-out {
+    height: 3em;
+  }
+}
+
+
 
 .hide {
   display: none;
