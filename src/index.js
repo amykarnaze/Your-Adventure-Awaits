@@ -11,16 +11,14 @@ import getApiData from './api';
 import './css/base.scss';
 import Customer from './Customer';
 import Manager from './Manager';
+import Bookings from './Bookings';
+
 const moment = require("moment");
 
-
-// function getData()
 let manager;
 let currentUser;
 let hotelData;
 let currentDate = moment().format('YYYY/MM/DD');
-
-
 
 getApiData().then(allData => {
   hotelData = allData;
@@ -46,32 +44,28 @@ function handleSubmit(event) {
 
 function managerLogin(){
   manager = new Manager(hotelData.users, hotelData.rooms, hotelData.bookings, currentDate);
-  console.log('Mclick', manager)
   hideLogin();
-  switchToManagerView();
-  displayManagerView()
-  // 
+  displayManagerView();
 }
 
-let todaysBooking = document.querySelector('.total-bookings-for-today');
-
-function switchToManagerView() {
-  todaysBooking.classList.remove('hide');
-  document.querySelector('.manager-view').classList.remove('hide')
-  console.log('manager', manager)
+function hideLogin() {
+  document.querySelector('.login-container').classList.add('hide');
 }
-  // todays
+
 function displayManagerView() {
+  document.querySelector('.manager-container-view').classList.remove('hide');
   displayManagerRoomsBooked();
   displayPercentageBooked();
   displayTodaysRevenue()
 }
 
 function displayManagerRoomsBooked() {
+  let todaysReservations = document.querySelector('.total-bookings-for-today');
   manager.todaysBookings.forEach(booking =>
-  todaysBooking.insertAdjacentHTML("afterbegin", 
+  todaysReservations.insertAdjacentHTML("afterbegin", 
   `<h1>${booking.roomNumber}</h1>
-  `))
+  `)
+  )
 }
 
 function displayPercentageBooked() {
@@ -91,9 +85,6 @@ function displayTodaysRevenue() {
   // )
 }
 
-function hideLogin() {
-  document.querySelector('.login-container').classList.add('hide');
-}
 
 function customerLogin(customerInput) {
   let customerId = customerInput.substring(8);
@@ -121,20 +112,25 @@ function setManagerCustomerLookup() {
   let name = document.querySelector('.findUser').value;
   manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
   let customerSearch = document.querySelector('.search-for-customer')
-  
   if (document.getElementById('revenue')) {
     document.getElementById('revenue').remove();
   }
   customerSearch.insertAdjacentHTML("afterend",
-    `<h1 id="revenue">Today's Revenue: ${manager.todaysRevenue}</h1>`)
+    `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
+    ${manager.currentCustomer.bookings}
+    ${manager.currentCustomer.totalAmountSpent}</h1>
+
+    )
+    `
+    )
   // console.log(manager)
   // manager.currentCustomer.whateverCustomerOwns
   // console.log(manager.currentCustomer.totalAmountSpent)
 }
 
+const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
 function logOut() {
-  const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
-  document.querySelector('.manager-view').classList.add('hide')
+  document.querySelector('.manager-container-view').classList.add('hide')
   document.querySelector('.login-container').classList.remove('hide')
 }
 // revenue
