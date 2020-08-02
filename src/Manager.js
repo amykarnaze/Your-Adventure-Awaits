@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 class Manager {
   constructor(customers, rooms, bookings, date) {
     this.currentCustomer = {};
@@ -28,7 +30,7 @@ class Manager {
   searchForBookingsForToday() {
 // current date and filter for that date in bookings array
     return this.bookings.filter(booking => {
-      return booking.date === "2020/04/22"
+      return booking.date === moment().format('YYYY/MM/DD');
     });
     console.log('today', this.todaysBookings)
   }
