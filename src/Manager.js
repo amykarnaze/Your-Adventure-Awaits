@@ -6,6 +6,7 @@ class Manager {
     this.bookings = bookings;
     this.date = date;
     this.todaysBookings = this.searchForBookingsForToday();
+    this.todaysRevenue = this.getTodaysRevenue(bookings, rooms, date);
   }
 
   setCurrentCustomer(customer) {
@@ -30,6 +31,20 @@ class Manager {
     });
     console.log('today', this.todaysBookings)
   }
+
+  getTodaysRevenue(bookings, rooms, date) {
+      let todaysBookings = bookings.filter(booking => booking.date === date);
+      let revenue = todaysBookings.reduce((revenue, bookedRoom) => {
+        rooms.forEach(room => {
+          if (room.number === bookedRoom.roomNumber) {
+            revenue += room.costPerNight;
+          }
+        });
+        console.log('rev', revenue)
+        return revenue;
+      }, 0);
+      return Number(revenue.toFixed(2));
+    }
 
 
 }

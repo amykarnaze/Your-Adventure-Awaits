@@ -80,10 +80,10 @@ function displayPercentageBooked() {
 
 function displayTodaysRevenue() {
   let todaysRevenue = document.querySelector('.revenue-for-today');
-  manager.todaysBookings.forEach(booking =>
+  // manager.todaysBookings.forEach(booking =>
   todaysRevenue.insertAdjacentHTML("afterbegin", 
-  `<h1>${booking.roomNumber}</h1>
-  `))
+  `<h1>Today's Revenue is: ${manager.todaysRevenue}</h1>`)
+  // )
 }
 
 function hideLogin() {
@@ -117,11 +117,12 @@ function setManagerCustomerLookup() {
   manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
   // console.log(manager)
   // manager.currentCustomer.whateverCustomerOwns
-  console.log(manager.currentCustomer.totalAmountSpent)
+  // console.log(manager.currentCustomer.totalAmountSpent)
+  console.log('revenue', manager.currentCustomer.getTodaysRevenue())
 }
 
-const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
 function logOut() {
+  const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
   document.querySelector('.manager-view').classList.add('hide')
   document.querySelector('.login-container').classList.remove('hide')
 }
