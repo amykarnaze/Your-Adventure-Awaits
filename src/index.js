@@ -79,14 +79,20 @@ function displayPercentageBooked() {
 
 function displayTodaysRevenue() {
   let todaysRevenue = document.querySelector('.revenue-for-today');
+  console.log(manager.todaysRevenue)
   // manager.todaysBookings.forEach(booking =>
   todaysRevenue.insertAdjacentHTML("afterbegin", 
   `<h1>Today's Revenue: ${manager.todaysRevenue}</h1>`)
   // )
 }
 
+// function displayCustomerDash() {
+// }
 
 function customerLogin(customerInput) {
+  document.querySelector('.customer-booking-container').classList.remove('hide')
+  hideLogin();
+
   let customerId = customerInput.substring(8);
   // hideLogin()
   // displayCustomerLogin();
@@ -115,23 +121,26 @@ function setManagerCustomerLookup() {
   if (document.getElementById('revenue')) {
     document.getElementById('revenue').remove();
   }
-  customerSearch.insertAdjacentHTML("afterend",
-    `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
-    ${manager.currentCustomer.bookings}
-    ${manager.currentCustomer.totalAmountSpent}</h1>
-
-    )
-    `
-    )
+  let customerData = manager.currentCustomer.bookings.map(booking => {
+    return `<p>name:${manager.currentCustomer.name}    booking date:${booking.date}  booking room: ${booking.roomNumber}</p>`
+    // `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
+    // ${manager.booking}
+    // ${manager.currentCustomer.totalAmountSpent}</h1>)`
+  })
+  customerSearch.insertAdjacentHTML("afterend", customerData);
+  }
+    
   // console.log(manager)
   // manager.currentCustomer.whateverCustomerOwns
   // console.log(manager.currentCustomer.totalAmountSpent)
-}
+
 
 const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
 function logOut() {
   document.querySelector('.manager-container-view').classList.add('hide')
   document.querySelector('.login-container').classList.remove('hide')
+  document.querySelector('.customer-booking-container').classList.add('hide')
+
 }
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
