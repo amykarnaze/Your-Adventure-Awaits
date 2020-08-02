@@ -5,7 +5,10 @@ import Customer from '../src/Customer.js';
 describe('customer', () => {
   let customers;
   let customer;
-  let customer2;
+  let customer2; 
+  let bookings;
+  let rooms;
+
   beforeEach(function () {
     customers = [
       {
@@ -21,8 +24,38 @@ describe('customer', () => {
         'name': 'Kelvin Schiller'
       }
     ];
-    customer = new Customer(customers[0]);
-    customer2 = new Customer(customers[1]);
+    bookings = [
+      {
+      "id": "5fwrgu4i7k55hl6sz",
+      "userID": 9,
+      "date": "2020/04/22",
+      "roomNumber": 15,
+      "roomServiceCharges": []
+    }, {
+      "id": "5fwrgu4i7k55hl6t5",
+      "userID": 43,
+      "date": "2020/01/24",
+      "roomNumber": 24,
+      "roomServiceCharges": []
+    }
+    ];
+    rooms = [{
+      "number": 1,
+      "roomType": "residential suite",
+      "bidet": true,
+      "bedSize": "queen",
+      "numBeds": 1,
+      "costPerNight": 358.4
+    }, {
+      "number": 2,
+      "roomType": "suite",
+      "bidet": false,
+      "bedSize": "full",
+      "numBeds": 2,
+      "costPerNight": 477.38
+    }];
+    customer = new Customer(customers[0], bookings, rooms);
+    customer2 = new Customer(customers[1], bookings, rooms);
 }) 
 
   it('should be a function', function () {
@@ -50,7 +83,7 @@ describe('customer', () => {
   });
 
   it('should have a list of bookings', function () {
-    expect(customer.bookings).to.deep.equal([]);
+    expect(customer.bookings.length).to.equal(2);
   });
 
   it('should have property of total money spent', function () {
@@ -61,13 +94,9 @@ describe('customer', () => {
     expect(customer.username).to.equal('customer1');
   });
 
-  it('should have a password', function () {
-    expect(customer.password).to.equal('overlook2020');
-  });
-
-  it('should get a first name', function () {
-    expect(customer.getFirstName()).to.equal('Leatha');
-  });
+  // it('should get a first name', function () {
+  //   expect(customer.getFirstName()).to.equal('Leatha');
+  // });
 
   // it('get customer id', function () {
   //   expect(customer.getCustomerId).to.equal(1);
