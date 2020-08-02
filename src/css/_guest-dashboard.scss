@@ -1,0 +1,52 @@
+.customer-booking-container {
+  display: flex;
+      flex-direction: column;
+
+  justify-content: space-between;
+
+  padding: 1em;
+}
+
+.customer-select-dates-container {
+  display: flex;
+  // justify-content: space-between;
+  padding: 1em;
+}
+
+.customer-available-rooms-container {
+  display: flex;
+  // justify-content: space-between;
+  padding: 1em;
+
+}
+
+.customer-trips-container {
+  display: flex;
+  flex-direction: column;
+
+  // justify-content: space-between;
+  
+  .future-reservations-container {
+    // display: flex;
+    // justify-content: space-between;
+    // padding: 1em;
+  }
+}
+
+.past-reservations-container {
+
+}
+
+.customer-finances-container {
+  // display: flex;
+  // justify-content: space-between;
+  // padding: 1em;
+
+  
+  .customer-spending-history-container {
+    
+  }
+}
+
+
+
