@@ -11,12 +11,16 @@ import getApiData from './api';
 import './css/base.scss';
 import Customer from './Customer';
 import Manager from './Manager';
+const moment = require("moment");
+
 
 // function getData()
-let currentDate = "2020/04/22";
 let manager;
 let currentUser;
 let hotelData;
+let currentDate = moment().format('YYYY/MM/DD');
+
+
 
 getApiData().then(allData => {
   hotelData = allData;
@@ -74,7 +78,7 @@ function displayPercentageBooked() {
   let percentBooked = document.querySelector('.percent-booked-today');
   // manager.todaysBookings.forEach(booking =>
   percentBooked.insertAdjacentHTML("afterbegin", 
-  `<h1>${manager.percentBookings}</h1>
+  `<h1>Percent Booked:${manager.percentBookings}</h1>
   `)
   // )
 }
@@ -83,7 +87,7 @@ function displayTodaysRevenue() {
   let todaysRevenue = document.querySelector('.revenue-for-today');
   // manager.todaysBookings.forEach(booking =>
   todaysRevenue.insertAdjacentHTML("afterbegin", 
-  `<h1>Today's Revenue is: ${manager.todaysRevenue}</h1>`)
+  `<h1>Today's Revenue: ${manager.todaysRevenue}</h1>`)
   // )
 }
 
@@ -116,10 +120,16 @@ document.querySelector('.search-customer-button').addEventListener('click', setM
 function setManagerCustomerLookup() {
   let name = document.querySelector('.findUser').value;
   manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
+  let customerSearch = document.querySelector('.search-for-customer')
+  
+  if (document.getElementById('revenue')) {
+    document.getElementById('revenue').remove();
+  }
+  customerSearch.insertAdjacentHTML("afterend",
+    `<h1 id="revenue">Today's Revenue: ${manager.todaysRevenue}</h1>`)
   // console.log(manager)
   // manager.currentCustomer.whateverCustomerOwns
   // console.log(manager.currentCustomer.totalAmountSpent)
-  console.log('revenue', manager.currentCustomer.getTodaysRevenue())
 }
 
 function logOut() {
