@@ -1,7 +1,9 @@
 .manager-view {
   display: flex;
+  flex-direction: column;
   border: solid 1px black;
   background-color: salmon;
+  padding: 1em;
 }
 
 .search-for-customer {
@@ -14,26 +16,26 @@
 
 .info-today-container {
   display: flex;
+  justify-content: space-between;
 }
 
 .total-bookings-for-today {
   justify-content: flex-start;
-    height: 25em;
-    width: 25em;
+    width: 30%;
 
 }
   .revenue-for-today {
     border: solid 1em greenyellow;
     // display: flex;
     justify-content: flex-start;
-    height: 25em;
-    width: 25em;
+    width: 30%;
   }
 
   .percent-booked-today {
     // display: flex;
     justify-content: flex-start;
-    height: 25em;
-    width: 25em;
+    width: 30%;
   }
+
+
   
