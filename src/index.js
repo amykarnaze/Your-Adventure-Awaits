@@ -12,6 +12,7 @@ import './css/base.scss';
 import Customer from './Customer';
 import Manager from './Manager';
 import Bookings from './Bookings';
+import Hotel from './Hotel';
 
 const moment = require("moment");
 
@@ -149,6 +150,12 @@ function logOut() {
   document.querySelector('.manager-container-view').classList.add('hide');
   document.querySelector('.login-container').classList.remove('hide');
   document.querySelector('.customer-booking-container').classList.add('hide');
+}
+document.querySelector('.customer-search-dates-button').addEventListener('click', roomAvailablity) 
+
+function roomAvailablity() {
+let date = document.querySelector('.booking-input').value;
+let type = document.querySelector('.room-select')
 }
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
