@@ -10,58 +10,53 @@
       <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
       <button class="log-out">Log Out</button>
     </header>
-
     <main>
     <section class="login-page-flex" id="login-page-id">
       <article class="login-container">
         <h2>Your Adventure Awaits</h2>
         <form id="login-form">
-          <input id="username-input" class="login-input" type="text" placeholder="Username" value="manager">
+          <input id="username-input" class="login-input" type="text" placeholder="Username" value="customer1">
           <input id="password-input" class="login-input" type="text" placeholder="Password" value="overlook2020">
           <button type="button" id="login-button" aria-label='Submit login in information'>Sign in</button>
         </form>
       </article>
     </section>
-    <section class="customer-view">
-      <section class='customer-booking-container hide'>
-        <h1 class="user-welcome"></h1>
-        <h2 class="customer-name"></h2>
-         <section class="customer-select-dates-container">
-            <label class="future-date-text" for="arrival-date-input">Arrival date:<label>
-            <input type="date" class="booking-input" id="date-input" placeholder="mm/dd/yyyy">
-            <!-- <label class="future-date-text" for="departure-date-input">Departure date:<label>
-            <input type="date" class="booking-input" id="departure-date-input" placeholder="mm/dd/yyyy"> -->
-            <button type="button" id="customer-search-dates-button" aria-label='Add search Dates'>Search availability</button>
-            <select class"room-select" type="text" id="room-filter">
-         </section>
-           <option value="all rooms">All Room Types</option>
-           <option value="residential suite">Residential Suite</option>
-           <option value="suite">Suite</option>
-           <option value="single room">Single Room</option>
-           <option value="junior suite">Junior Suite</option>
-         <section class="customer-available-rooms-container">
-         </section>
-         <section class="customer-trips-container">
-           <h2 class="customer-header">View your upcoming reservations:<button
-               id="refresh-trips-button">Refresh</button></h2>
-           <section id="future-reservations-container">
-             <p class="reservation-info">Please let us know if you need to cancel or modify an upcoming reservation</p>
-           </section>
-           <h2 class="customer-header">View your past reservations:</h2>
-           <p class="reservation-info">Reservations</p>
-           <section id="past-reservations-container">
-           </section>
-           <button id="view-more-past-trips-button">Load more trips</button>
-         </section>
-         <section class="customer-finances-container">
-           <h2 class="customer-header">Financial History:</h2>
-           <section id="customer-spending-history-container">
-           </section>
-         </section>
+    <!-- <section class="customer-view"> -->
+    <section class="customer-booking-container hide">
+      <h1 class="user-welcome"></h1>
+      <h2 class="customer-name"></h2>
+      <section class="customer-select-dates-container">
+        <label class="future-date-text" for="arrival-date-input">Arrival date:<label>
+        <input type="date" class="booking-input" id="date-input" placeholder="mm/dd/yyyy">
+        <!-- <label class="future-date-text" for="departure-date-input">Departure date:<label>
+        <input type="date" class="booking-input" id="departure-date-input" placeholder="mm/dd/yyyy"> -->
+        <button type="button" id="customer-search-dates-button" aria-label='Add search Dates'>Search availability</button>
+        <select class"room-select" type="text" id="room-filter">
+          <option value="all rooms">All Room Types</option>
+          <option value="residential suite">Residential Suite</option>
+          <option value="suite">Suite</option>
+          <option value="single room">Single Room</option>
+          <option value="junior suite">Junior Suite</option>
+        </select>
+      </section>
+      <section class="customer-available-rooms-container"></section>
+      <section class="customer-trips-container">
+        <h2 class="customer-header">View your upcoming reservations:<button
+            id="refresh-trips-button">Refresh</button></h2>
+        <section id="future-reservations-container">
+          <p class="reservation-info">Please let us know if you need to modify an upcoming reservation</p>
+        </section>
+        <h2 class="customer-header">View your past reservations:</h2>
+        <p class="reservation-info">Reservations</p>
+        <section class="past-reservations-container">
+        </section>
+        <!-- <button id="view-more-past-trips-button">Load more trips</button> -->
+      </section>
+      <section class="customer-finances-container">Financial History
+        <section id="customer-spending-history-container"></section>
       </section>
     </section>
-    </section>
-    <section class="manager-view hide">
+    <section class="manager-container-view hide">
       <h2 class="manager-header-text">View your stats</h2>
       <section class="info-today-container">
         <section class="total-bookings-for-today"></section>
@@ -73,8 +68,6 @@
         <button class="search-customer-button">Find User</button>
       </article>
     </section>
-      
-    <!-- </section> -->
     </main>
   </body>
 </html>
