@@ -19,14 +19,14 @@ let manager;
 let currentCustomer;
 let hotelData;
 let currentDate = moment().format('YYYY/MM/DD');
-document.querySelector('.search-customer-button').addEventListener('click', setManagerCustomerLookup);
 
 getApiData().then(allData => {
   hotelData = allData;
   console.log('allData', allData)
   return allData;
-})
+});
 
+document.querySelector('.search-customer-button').addEventListener('click', setManagerCustomerLookup);
 const loginButton = document.querySelector("#login-button");
 loginButton.addEventListener('click', handleSubmit);
 
@@ -35,12 +35,12 @@ function handleSubmit(event) {
   const userLogin = document.querySelector("#username-input").value;
   let password = document.querySelector("#password-input").value;
   if (userLogin.toLowerCase() === 'manager' && password === 'overlook2020') {
-    managerLogin()
+    managerLogin();
   }
   if (userLogin.toLowerCase().includes('customer') && password === 'overlook2020') {
-    customerLogin(userLogin)
+    customerLogin(userLogin);
   } else {
-    alert("Please enter a valid username and password")
+    alert("Please enter a valid username and password");
   }
 }
 // reduce(a, b) => a + b;
@@ -59,7 +59,7 @@ function displayManagerView() {
   document.querySelector('.manager-container-view').classList.remove('hide');
   displayManagerRoomsBooked();
   displayPercentageBooked();
-  displayTodaysRevenue()
+  displayTodaysRevenue();
 }
 
 function displayManagerRoomsBooked() {
@@ -82,25 +82,20 @@ function displayPercentageBooked() {
 
 function displayTodaysRevenue() {
   let todaysRevenue = document.querySelector('.revenue-for-today');
-  console.log(manager.todaysRevenue)
-  // manager.todaysBookings.forEach(booking =>
+  // console.log(manager.todaysRevenue);
   todaysRevenue.insertAdjacentHTML("afterbegin", 
-  `<h1>Today's Revenue: ${manager.todaysRevenue}</h1>`)
-  // )
+  `<h1>Today's Revenue: ${manager.todaysRevenue}</h1>`);
 }
 
-// function displayCustomerDash() {
-// }
-
 function customerLogin(customerInput) {
-  document.querySelector('.customer-booking-container').classList.remove('hide')
+  document.querySelector('.customer-booking-container').classList.remove('hide');
   hideLogin();
   let customerId = customerInput.substring(8);
   currentCustomer = new Customer(findUserById(customerId), hotelData.bookings, hotelData.rooms);
   displayCustomerDash();
   // manager will do same thing w currentCustomer
   // currentCustomer.findBookings(hotelData.bookings);
-  console.log(currentCustomer)
+  console.log(currentCustomer);
 }
 
 function findUserById(id) {
@@ -113,32 +108,16 @@ function findUserByName(name) {
 
 }
 
-function setManagerCustomerLookup() {
-  let name = document.querySelector('.findUser').value;
-  manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
-  let customerSearch = document.querySelector('.search-for-customer')
-  if (document.getElementById('revenue')) {
-    document.getElementById('revenue').remove();
-  }
-  let customerData = manager.currentCustomer.bookings.map(booking => {
-    return `<p>name:${manager.currentCustomer.name}    booking date:${booking.date}  booking room: ${booking.roomNumber}</p>`
-    // `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
-    // ${manager.booking}
-    // ${manager.currentCustomer.totalAmountSpent}</h1>)`
-  })
-  customerSearch.insertAdjacentHTML("afterend", customerData);
-}
-
 function displayCustomerDash() {
+document.querySelector('.customer-name').innerText = `${currentCustomer.name}`;
 displayCustomerFinances();
 displayCustomerBookings();
 }
 
 function displayCustomerBookings() {
   let pastReservations = document.querySelector('.past-reservations-container');
-  // console.log('current', currentCustomer.bookings)
   let customerBookings = currentCustomer.bookings.map(booking => {
-    return `<p>name:${currentCustomer.name} date:${booking.date}</p>`
+    return `<p>Booking Date:${booking.date}</p>`
   })
   pastReservations.insertAdjacentHTML("beforeend", customerBookings);
 }
@@ -149,19 +128,27 @@ function displayCustomerFinances() {
  customerFinances.insertAdjacentHTML("afterend", customerMoney);
 }
 
-
-    
-  // console.log(manager)
-  // manager.currentCustomer.whateverCustomerOwns
-  // console.log(manager.currentCustomer.totalAmountSpent)
-
+function setManagerCustomerLookup() {
+  let name = document.querySelector('.findUser').value;
+  manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
+  let customerSearch = document.querySelector('.search-for-customer');
+  if (document.getElementById('revenue')) {
+    document.getElementById('revenue').remove();
+  }
+  let customerData = manager.currentCustomer.bookings.map(booking => {
+    return `<p>name:${manager.currentCustomer.name}    booking date:${booking.date}  booking room: ${booking.roomNumber}</p>`
+    // `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
+    // ${manager.booking}
+    // ${manager.currentCustomer.totalAmountSpent}</h1>)`
+  })
+  customerSearch.insertAdjacentHTML("afterend", customerData);
+  }
 
 const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
 function logOut() {
-  document.querySelector('.manager-container-view').classList.add('hide')
-  document.querySelector('.login-container').classList.remove('hide')
-  document.querySelector('.customer-booking-container').classList.add('hide')
-
+  document.querySelector('.manager-container-view').classList.add('hide');
+  document.querySelector('.login-container').classList.remove('hide');
+  document.querySelector('.customer-booking-container').classList.add('hide');
 }
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
