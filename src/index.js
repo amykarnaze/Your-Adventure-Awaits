@@ -16,7 +16,7 @@ import Bookings from './Bookings';
 const moment = require("moment");
 
 let manager;
-let currentUser;
+let currentCustomer;
 let hotelData;
 let currentDate = moment().format('YYYY/MM/DD');
 
@@ -92,14 +92,12 @@ function displayTodaysRevenue() {
 function customerLogin(customerInput) {
   document.querySelector('.customer-booking-container').classList.remove('hide')
   hideLogin();
-
   let customerId = customerInput.substring(8);
-  // hideLogin()
-  // displayCustomerLogin();
-  currentUser = new Customer(findUserById(customerId), hotelData.bookings, hotelData.rooms);
+  currentCustomer = new Customer(findUserById(customerId), hotelData.bookings, hotelData.rooms);
+  displayCustomerDash();
   // manager will do same thing w currentCustomer
-  // currentUser.findBookings(hotelData.bookings);
-  console.log(currentUser)
+  // currentCustomer.findBookings(hotelData.bookings);
+  console.log(currentCustomer)
 }
 
 function findUserById(id) {
@@ -109,6 +107,18 @@ function findUserById(id) {
 
 function findUserByName(name) {
   return hotelData.users.find(user => user.name.toLowerCase() == name.toLowerCase());
+
+}
+
+function displayCustomerDash() {
+displayCustomerFinances()
+}
+
+function displayCustomerFinances() {
+ let customerFinances = document.querySelector('.customer-finances-container');
+ let customerMoney = `<p>${currentCustomer.totalAmountSpent}</p>`
+ customerFinances.insertAdjacentHTML("afterend", customerMoney)
+
 
 }
 
