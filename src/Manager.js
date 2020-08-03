@@ -1,16 +1,19 @@
+import Hotel from "./Hotel";
+
 const moment = require("moment");
 
 class Manager {
-  constructor(customers, rooms, bookings, date) {
-    this.customers = customers;
+  constructor(rooms, bookings, date) {
+    // customers,
+    // this.customers = customers;
+    // pass hotel.customers to do math
     this.currentCustomer = {};
-    this.rooms = rooms;
+    // this.rooms = rooms;
     this.bookings = bookings;
     this.date = date;
     this.todaysBookings = this.searchForBookingsForToday();
     this.todaysRevenue = this.getTodaysRevenue(bookings, rooms, date);
     this.percentBookings = this.calculatePercentOccupiedToday(bookings, rooms, date);
-    this.allBookings = [];
   }
 
   setCurrentCustomer(customer) {
@@ -19,13 +22,14 @@ class Manager {
 
   }
 
-  searchCustomerByName(input) {
+  searchCustomerByName(input, customers) {
     input = input.toLowerCase();
-    return this.customers.filter(customer => {
+    return customers.filter(customer => {
       if (customer.name.toLowerCase().includes(input)) {
         return customer;
       }
     })
+    // pass hotel.customers
   }
 // do I want the object returned or an array?
   searchForBookingsForToday() {
@@ -59,22 +63,6 @@ class Manager {
     return Number(percentageRoomsOccupiedToday.toFixed(2));
   }
 
-   availableRooms() {
-     let todaysBookingByRoomNum = this.todaysBookings.map((booking) => {
-       return booking.roomNumber;
-     });
-     return this.rooms.filter((room) => {
-       return !todaysBookingByRoomNum.includes(room.number);
-     });
-   }
-
-   availableRoomTypeAndDate(date, type) {
-       let availableRoomOnDate = this.unbookedRooms(date);
-       return availableRoomOnDate.filter((room) => {
-         return room.roomType === type;
-       });
-
-}
 }
 
 

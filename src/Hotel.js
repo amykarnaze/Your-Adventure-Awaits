@@ -1,23 +1,17 @@
 const moment = require("moment");
 
-class Manager {
-  constructor(customers, rooms, bookings, date) {
+class Hotel {
+  constructor(customers, rooms, bookings) {
     this.customers = customers;
-    this.currentCustomer = {};
     this.rooms = rooms;
     this.bookings = bookings;
-    this.date = date;
-    this.todaysBookings = this.searchForBookingsForToday();
-    this.todaysRevenue = this.getTodaysRevenue(bookings, rooms, date);
-    this.percentBookings = this.calculatePercentOccupiedToday(bookings, rooms, date);
-    this.allBookings = [];
   }
 
-  setCurrentCustomer(customer) {
-    // let foundCustomer = this.customers.find(customer => customer.name.toLowerCase() === name.toLowerCase())
-    this.currentCustomer = customer;
+  // setCurrentCustomer(customer) {
+  //   // let foundCustomer = this.customers.find(customer => customer.name.toLowerCase() === name.toLowerCase())
+  //   this.currentCustomer = customer;
 
-  }
+  // }
 
   searchCustomerByName(input) {
     input = input.toLowerCase();
@@ -36,28 +30,28 @@ class Manager {
     console.log('today', this.todaysBookings)
   }
 
-  getTodaysRevenue(bookings, rooms, date) {
-      let todaysBookings = bookings.filter(booking => booking.date === date);
-      let revenue = todaysBookings.reduce((revenue, bookedRoom) => {
-        rooms.forEach(room => {
-          if (room.number === bookedRoom.roomNumber) {
-            revenue += room.costPerNight;
-          }
-        });
-        console.log('rev', revenue)
-        return revenue;
-      }, 0);
-      return Number(revenue.toFixed(2));
-    }
+  // getTodaysRevenue(bookings, rooms, date) {
+  //     let todaysBookings = bookings.filter(booking => booking.date === date);
+  //     let revenue = todaysBookings.reduce((revenue, bookedRoom) => {
+  //       rooms.forEach(room => {
+  //         if (room.number === bookedRoom.roomNumber) {
+  //           revenue += room.costPerNight;
+  //         }
+  //       });
+  //       console.log('rev', revenue)
+  //       return revenue;
+  //     }, 0);
+  //     return Number(revenue.toFixed(2));
+  //   }
 
-  calculatePercentOccupiedToday(bookings, rooms, date) {
-    let todayBookings = bookings.filter(
-      booking => booking.date === date).length;
-    let percentageRoomsOccupiedToday =
-      (todayBookings / rooms.length) * 100;
-      console.log(percentageRoomsOccupiedToday)
-    return Number(percentageRoomsOccupiedToday.toFixed(2));
-  }
+  // calculatePercentOccupiedToday(bookings, rooms, date) {
+  //   let todayBookings = bookings.filter(
+  //     booking => booking.date === date).length;
+  //   let percentageRoomsOccupiedToday =
+  //     (todayBookings / rooms.length) * 100;
+  //     console.log(percentageRoomsOccupiedToday)
+  //   return Number(percentageRoomsOccupiedToday.toFixed(2));
+  // }
 
    availableRooms() {
      let todaysBookingByRoomNum = this.todaysBookings.map((booking) => {
@@ -78,4 +72,4 @@ class Manager {
 }
 
 
-export default Manager;
+export default Hotel;
