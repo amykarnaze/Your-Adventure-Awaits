@@ -19,6 +19,7 @@ let manager;
 let currentCustomer;
 let hotelData;
 let currentDate = moment().format('YYYY/MM/DD');
+document.querySelector('.search-customer-button').addEventListener('click', setManagerCustomerLookup);
 
 getApiData().then(allData => {
   hotelData = allData;
@@ -38,6 +39,8 @@ function handleSubmit(event) {
   }
   if (userLogin.toLowerCase().includes('customer') && password === 'overlook2020') {
     customerLogin(userLogin)
+  } else {
+    alert("Please enter a valid username and password")
   }
 }
 // reduce(a, b) => a + b;
@@ -110,20 +113,6 @@ function findUserByName(name) {
 
 }
 
-function displayCustomerDash() {
-displayCustomerFinances()
-}
-
-function displayCustomerFinances() {
- let customerFinances = document.querySelector('.customer-finances-container');
- let customerMoney = `<p>${currentCustomer.totalAmountSpent}</p>`
- customerFinances.insertAdjacentHTML("afterend", customerMoney)
-
-
-}
-
-document.querySelector('.search-customer-button').addEventListener('click', setManagerCustomerLookup);
-
 function setManagerCustomerLookup() {
   let name = document.querySelector('.findUser').value;
   manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
@@ -138,7 +127,29 @@ function setManagerCustomerLookup() {
     // ${manager.currentCustomer.totalAmountSpent}</h1>)`
   })
   customerSearch.insertAdjacentHTML("afterend", customerData);
-  }
+}
+
+function displayCustomerDash() {
+displayCustomerFinances();
+displayCustomerBookings();
+}
+
+function displayCustomerBookings() {
+  let pastReservations = document.querySelector('.past-reservations-container');
+  // console.log('current', currentCustomer.bookings)
+  let customerBookings = currentCustomer.bookings.map(booking => {
+    return `<p>name:${currentCustomer.name} date:${booking.date}</p>`
+  })
+  pastReservations.insertAdjacentHTML("beforeend", customerBookings);
+}
+
+function displayCustomerFinances() {
+ let customerFinances = document.querySelector('.customer-finances-container');
+ let customerMoney = `<p>${currentCustomer.totalAmountSpent}</p>`
+ customerFinances.insertAdjacentHTML("afterend", customerMoney);
+}
+
+
     
   // console.log(manager)
   // manager.currentCustomer.whateverCustomerOwns
