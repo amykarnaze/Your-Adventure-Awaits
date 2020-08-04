@@ -42,9 +42,10 @@ function handleSubmit(event) {
   }
   if (userLogin.toLowerCase().includes('customer') && password === 'overlook2020') {
     customerLogin(userLogin);
-  } else {
-    alert("Please enter a valid username and password");
-  }
+  } 
+  // else {
+  //   alert("Please enter a valid username and password");
+  // }
 }
 // reduce(a, b) => a + b;
 
@@ -212,7 +213,7 @@ function bookingTarget(event) {
    let date = document.querySelector('.booking-input').value;
    let formatedDate = date.split('-').join('/')
    let roomNumber = event.target.value;
-  //  postNewBooking(currentCustomer.id, formatedDate, roomNumber);
+   postNewBooking(currentCustomer, formatedDate, roomNumber);
   }
 }
    // currentCustomer.id;
