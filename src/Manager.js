@@ -18,26 +18,30 @@ class Manager {
 
   setCurrentCustomer(customer) {
     // let foundCustomer = this.customers.find(customer => customer.name.toLowerCase() === name.toLowerCase())
-    this.currentCustomer = customer;
+    return this.currentCustomer = customer;
 
   }
 
-  searchCustomerByName(input, customers) {
-    input = input.toLowerCase();
-    return customers.filter(customer => {
-      if (customer.name.toLowerCase().includes(input)) {
-        return customer;
-      }
-    })
-    // pass hotel.customers
-  }
+  // searchCustomerByName(input, customers) {
+  //   input = input.toLowerCase();
+  //   let customerName = customers.filter(customer => {
+  //     if (customer.name.toLowerCase().includes(input)) {
+  //       return customer;
+  //     }
+  //   })
+  //   console.log(customerName)
+  //   return customerName;
+  //   // pass hotel.customers
+  // }
 // do I want the object returned or an array?
   searchForBookingsForToday() {
 // current date and filter for that date in bookings array
-    return this.bookings.filter(booking => {
+console.log('here')
+    let todaysBooks = this.bookings.filter(booking => {
       return booking.date === moment().format('YYYY/MM/DD');
     });
-    console.log('today', this.todaysBookings)
+    console.log('todays bookings', todaysBooks)
+    return todaysBooks;
   }
 
   getTodaysRevenue(bookings, rooms, date) {
