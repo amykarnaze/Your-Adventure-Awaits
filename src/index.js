@@ -50,7 +50,8 @@ function handleSubmit(event) {
 // reduce(a, b) => a + b;
 
 function managerLogin(){
-  manager = new Manager(hotel.customers, hotel.rooms, hotel.bookings, currentDate);
+  manager = new Manager(hotel.rooms, hotel.bookings, currentDate);
+  console.log(manager)
   hideLogin();
   displayManagerView();
 }
@@ -108,6 +109,11 @@ function findUserById(id) {
   // use == when strign and number
 }
 
+function findCustomer(name) {
+  return hotel.customers.find(user => user.name.toLowerCase() == name.toLowerCase());
+
+}
+
 function findUserByName(name) {
   return hotel.customers.find(user => user.name.toLowerCase() == name.toLowerCase());
 
@@ -132,6 +138,7 @@ function displayCustomerFinances() {
  let customerMoney = `<p>${currentCustomer.totalAmountSpent}</p>`
  customerFinances.insertAdjacentHTML("afterend", customerMoney);
 }
+
 
 function setManagerCustomerLookup() {
   let name = document.querySelector('.findUser').value;
@@ -161,31 +168,37 @@ document.querySelector('.customer-search-dates-button').addEventListener('click'
 let date = document.querySelector('.booking-input').value;
 let type = document.querySelector('.room-select').value;
 
-function customerRoomAvaiability() {
-  console.warn('date', date)
+function customerRoomAvaiability(date) {
   let hotelRooms = hotel.availableRoomTypeAndDate(date, type)
+  console.warn('date', date)
+  
   customerAvailableRooms(hotelRooms);
 }
 document.querySelector('.manager-search-dates-button').addEventListener('click', managerRoomAvaiability);
 
 
 function managerRoomAvaiability() {
-  console.warn('dateMANAGER', date)
   let hotelRooms = hotel.availableRoomTypeAndDate(date, type)
   managerAvailableRooms(hotelRooms);
 }
-let customerTrips = document.querySelector('.available-rooms-container');
-document.querySelector('.available-rooms-container').addEventListener('click', bookingTarget);
+let customerTrips = document.querySelector('.customer-available-rooms-container');
+document.querySelector('.customer-available-rooms-container').addEventListener('click', bookingTarget);
 
 function customerAvailableRooms(availableRooms) {
-  let available = availableRooms.map(room => {
-    return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
-  }).join('')
-  customerTrips.innerHTML = '';
-  customerTrips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
+  console.log(availableRooms)
+  if (availableRooms.length === 0) {
+    alert('not available');
+  } else {
+    let available = availableRooms.map(room => {
+      return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
+    }).join('')
+    customerTrips.innerHTML = '';
+    customerTrips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
+  }
 }
-let managerTrips = document.querySelector('.manager-display-rooms-container');
-document.querySelector('.manager-display-rooms-container').addEventListener('click', managerBookingTarget)
+
+  let managerTrips = document.querySelector('.manager-display-rooms-container');
+  document.querySelector('.manager-display-rooms-container').addEventListener('click', bookingTarget)
 
 function managerAvailableRooms(availableRooms) {
   let available = availableRooms.map(room => {
@@ -195,27 +208,30 @@ function managerAvailableRooms(availableRooms) {
   managerTrips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>' + available)
 }
 
-function managerBookingTarget(event) {
+function bookingTarget(event) {
   event.preventDefault();
-  console.log('event', event)
-  if (event.target.classList.contains('manager-book-me')) {
-    let date = document.querySelector('.booking-input').value;
+  if (event.target.classList.contains('book-me') || event.target.classList.contains('manager-book-me')) {
+    let date = isManagerView() ? document.querySelector('#customer-date-input').value : document.querySelector('#date-input').value;
     let formatedDate = date.split('-').join('/')
+    currentCustomer = isManagerView() ? currentCustomer : manager.currentCustomer;
     let roomNumber = event.target.value;
-    //  postNewBooking(currentCustomer.id, formatedDate, roomNumber);
+    postNewBooking(currentCustomer, formatedDate, roomNumber);
   }
 }
 
-function bookingTarget(event) {
-  event.preventDefault();
-  console.log('event', event)
-  if (event.target.classList.contains('book-me')) {
-   let date = document.querySelector('.booking-input').value;
-   let formatedDate = date.split('-').join('/')
-   let roomNumber = event.target.value;
-   postNewBooking(currentCustomer, formatedDate, roomNumber);
+function isManagerView() {
+  if (manager === undefined) {
+    return true
+  } else {
+    return false;
   }
 }
+// return typeof manager !== 'undefined';
+
+// need method to get manager.getCurrentCustomer.
+
+
+// if ma
    // currentCustomer.id;
    // write api/ call
    // pass it date, room null, customer id,
@@ -250,18 +266,19 @@ function postNewBooking(currentCustomer, date, roomNumber) {
       })
     })
     .then(response => response.json())
+    .then(data => console.log('postme', data))
     .catch(error => console.error(error))
 }
 
-document.querySelector('.diplay-available-rooms').addEventListener('click', managerAvailableBookings);
+// document.querySelector('.manager-display-rooms-container').addEventListener('click', managerAvailableBookings);
 
 function managerAvailableBookings(hotelRooms) {
-  // let available = document.querySelector('.rooms-available-container')
-  // let available = availableRooms.map(room => {
-  //   return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
-  // }).join('')
-  // trips.innerHTML = '';
-  // trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>' + available)
+  let available = document.querySelector('.rooms-available-container')
+   available = availableRooms.map(room => {
+    return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
+  }).join('')
+  trips.innerHTML = '';
+  trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>' + available)
   }
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
