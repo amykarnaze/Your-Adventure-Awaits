@@ -15,7 +15,7 @@
       <article class="login-container">
         <h2>Your Adventure Awaits</h2>
         <form id="login-form">
-          <input id="username-input" class="login-input" type="text" placeholder="Username" value="customer1">
+          <input id="username-input" class="login-input" type="text" placeholder="Username" value="manager">
           <input id="password-input" class="login-input" type="text" placeholder="Password" value="overlook2020">
           <button type="button" id="login-button" aria-label='Submit login in information'>Sign in</button>
         </form>
@@ -66,7 +66,26 @@
       </section>
       <article class="search-for-customer">Search For Customer
         <input type="<text>" class="findUser" value="Leatha Ullrich">
-        <button class="search-customer-button">Find User</button>
+          <button class="search-customer-button">Find User</button>
+          <h4>The following rooms are available for booking:</h4>
+          <section class="rooms-available-container">
+           <section class="manager-select-dates-container">
+             <label class="future-date-text" for="arrival-date-input">Arrival date:<label>
+              <input type="date" class="booking-input" id="date-input" placeholder="mm/dd/yyyy">
+              <!-- <label class="future-date-text" for="departure-date-input">Departure date:<label>
+    <input type="date" class="booking-input" id="departure-date-input" placeholder="mm/dd/yyyy"> -->
+              <button type="button" class="manager-search-dates-button" aria-label='Add search Dates'>Search
+                availability</button>
+              <select class="room-select" type="text" id="room-filter">
+                <option value="all rooms">All Room Types</option>
+                <option value="residential suite">Residential Suite</option>
+                <option value="suite">Suite</option>
+                <option value="single room">Single Room</option>
+                <option value="junior suite">Junior Suite</option>
+              </select> <!-- <button class="diplay-available-rooms">Find Available Rooms</button> -->
+          </section>
+          <section class="manager-display-rooms-container"></section>
+        
       </article>
     </section>
     </main>
