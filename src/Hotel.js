@@ -12,6 +12,13 @@ class Hotel {
   //   this.currentCustomer = customer;
 
   // }
+  // findUserIdByName(name) {
+  //   let this.customers.find(customer => {
+  //     if (customer.name === 'name') {
+  //       return customer.id
+  //     }
+  //   }
+  // }
 
   searchCustomerByName(input) {
     input = input.toLowerCase();
@@ -22,16 +29,16 @@ class Hotel {
     })
   }
 // do I want the object returned or an array?
-  searchTodaysBookings() {
+  searchTodaysBookings(date) {
 // current date and filter for that date in bookings array
     return this.bookings.filter(booking => {
-      return booking.date === moment().format('YYYY/MM/DD');
+      return booking.date === date;
     });
     console.log('today', this.bookings)
   }
 
-   availableRooms() {
-     let todaysBookingByRoomNum = this.searchTodaysBookings().map((booking) => {
+   availableRooms(date) {
+     let todaysBookingByRoomNum = this.searchTodaysBookings(date).map((booking) => {
        return booking.roomNumber;
      });
      return this.rooms.filter((room) => {
@@ -39,14 +46,16 @@ class Hotel {
      });
   }
   
+  // make work fo rany date
+
   availableRoomTypeAndDate(date, type) {
     let availableRoomOnDate = this.availableRooms(date);
     if (type == 'all rooms') {
-      console.log('if', type)
+      // console.log('if', type)
       return availableRoomOnDate;
     } else {
-      console.log('else', type)
-    return availableRoomOnDate.filter((room) => {
+      // console.log('else', type)
+      return availableRoomOnDate.filter((room) => {
       return room.roomType === type.toLowerCase();
     });
 
