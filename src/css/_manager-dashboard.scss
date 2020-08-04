@@ -1,41 +1,91 @@
 .manager-container-view {
   display: flex;
   flex-direction: column;
-  border: solid 1px black;
-  background-color: salmon;
   padding: 1em;
 }
 
-.search-for-customer {
-  height: 5em;
-  width: 15em;
-  .search-customer-button {
+// .search-for-customer {
+//   height: 5em;
+//   width: 15em;
+//   .search-customer-button {
     
-  }
-}
+//   }
+// }
 
 .info-today-container {
   display: flex;
   justify-content: space-between;
+  color: rgb(25, 31, 37);
 }
 
 .total-bookings-for-today {
+  @include boxshadow;
+  list-style: none;
+  padding: 10px;
   justify-content: flex-start;
     width: $width;
 
 }
-  .revenue-for-today {
-    border: solid 1em greenyellow;
-    // display: flex;
-    justify-content: flex-start;
-    width: $width;
-  }
+.revenue-for-today {
+  @include boxshadow;
 
-  .percent-booked-today {
-    // display: flex;
-    justify-content: flex-start;
-    width: $width;
+  border: solid .4em ghostwhite;
+  // display: flex;
+  justify-content: flex-start;
+  width: $width;
+}
+
+.percent-booked-today {
+  @include boxshadow;
+
+  // display: flex;
+  justify-content: flex-start;
+  width: $width;
+}
+
+
+.rooms-available-container {
+  display: flex;
+  color: snow;
+
+  // align-content: space-between;
+}
+
+.search-for-customer {
+p {
+  color: snow;
+}
+}
+
+
+.manager-user-info {
+  display: grid;
+  grid-gap: 35px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  section {
+    @include boxshadow();
+    padding: 10px;
+    border-radius: 7px;
   }
+}
+
+.manager-display-rooms-container {
+  display: grid;
+  margin-top: 12px;
+  grid-gap: 35px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  section {
+    @include boxshadow();
+    padding: 10px;
+    border-radius: 7px;
+  }
+}
+
+h4 {
+  color: seashell;
+}
 
 
   

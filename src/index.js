@@ -70,8 +70,8 @@ function displayManagerView() {
 function displayManagerRoomsBooked() {
   let todaysReservations = document.querySelector('.total-bookings-for-today');
   manager.todaysBookings.forEach(booking =>
-  todaysReservations.insertAdjacentHTML("afterbegin", 
-  `<h1>${booking.roomNumber}</h1>
+  todaysReservations.insertAdjacentHTML("beforeend", 
+  `<li>${booking.roomNumber}</li>
   `)
   )
 }
@@ -79,7 +79,7 @@ function displayManagerRoomsBooked() {
 function displayPercentageBooked() {
   let percentBooked = document.querySelector('.percent-booked-today');
   // manager.todaysBookings.forEach(booking =>
-  percentBooked.insertAdjacentHTML("afterbegin", 
+  percentBooked.insertAdjacentHTML("beforeend", 
   `<h1>Percent Booked:${manager.percentBookings}</h1>
   `)
   // )
@@ -141,19 +141,24 @@ function displayCustomerFinances() {
 
 
 function setManagerCustomerLookup() {
+  let customerSearch = document.querySelector('.manager-user-info');
+  customerSearch.innerHTML = '';
   let name = document.querySelector('.findUser').value;
   manager.setCurrentCustomer(new Customer(findUserByName(name), hotel.bookings, hotel.rooms));
-  let customerSearch = document.querySelector('.search-for-customer');
   if (document.getElementById('revenue')) {
     document.getElementById('revenue').remove();
   }
-  let customerData = manager.currentCustomer.bookings.map(booking => {
-    return `<p>name:${manager.currentCustomer.name}    booking date:${booking.date}  booking room: ${booking.roomNumber} booking Id: ${booking.id}</p>`
+  return manager.currentCustomer.bookings.map(booking => {
+    customerSearch.innerHTML += `<section>
+      <p>name:${manager.currentCustomer.name}</p>
+      <p>booking date:${booking.date}</p>  
+      <p>booking room: ${booking.roomNumber}</p>
+      <p>booking Id: ${booking.id}</p>
+      </section>`
     // `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
     // ${manager.booking}
     // ${manager.currentCustomer.totalAmountSpent}</h1>)`
   })
-  customerSearch.insertAdjacentHTML("afterend", customerData);
   }
 
 document.querySelector('.log-out').addEventListener('click', logOut);
@@ -166,9 +171,12 @@ function logOut() {
 document.querySelector('.customer-search-dates-button').addEventListener('click', customerRoomAvaiability) 
 
 let date = document.querySelector('.booking-input').value;
+// or
+// let date = document.querySelector('#date-input').value;
+
 let type = document.querySelector('.room-select').value;
 
-function customerRoomAvaiability(date) {
+function customerRoomAvaiability() {
   let hotelRooms = hotel.availableRoomTypeAndDate(date, type)
   console.warn('date', date)
   
@@ -201,11 +209,17 @@ function customerAvailableRooms(availableRooms) {
   document.querySelector('.manager-display-rooms-container').addEventListener('click', bookingTarget)
 
 function managerAvailableRooms(availableRooms) {
-  let available = availableRooms.map(room => {
-    return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="manager-book-me" value=${room.number} type=button>Book me</button></section>`
-  }).join('')
   managerTrips.innerHTML = '';
-  managerTrips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>' + available)
+  let available = availableRooms.map(room => {
+    return `<section>
+    <p>Room Number: ${room.number}</p> 
+    <p>Room Type: ${room.roomType}</p> 
+    <p>Bed Size: ${room.bedSize}</p> 
+    <p>Number of Beds: ${room.numBeds}</p>
+    <button class="manager-book-me" value=${room.number} type=button>Book me</button></section>`
+  }).join('')
+  managerTrips.innerHTML += available;
+  // managerTrips.insertAdjacentHTML = ('afterbegin', '<h1>These Rooms Are Available for you.</h1>')
 }
 
 function bookingTarget(event) {
