@@ -10,7 +10,11 @@ html {
 }
 
 body {
-  background: $primary-background;
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)),
+  url('../images/overlook-login.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   margin: 0;
   height: 100%;
 }
