@@ -22,53 +22,37 @@ class Hotel {
     })
   }
 // do I want the object returned or an array?
-  searchForBookingsForToday() {
+  searchTodaysBookings() {
 // current date and filter for that date in bookings array
     return this.bookings.filter(booking => {
       return booking.date === moment().format('YYYY/MM/DD');
     });
-    console.log('today', this.todaysBookings)
+    console.log('today', this.bookings)
   }
 
-  // getTodaysRevenue(bookings, rooms, date) {
-  //     let todaysBookings = bookings.filter(booking => booking.date === date);
-  //     let revenue = todaysBookings.reduce((revenue, bookedRoom) => {
-  //       rooms.forEach(room => {
-  //         if (room.number === bookedRoom.roomNumber) {
-  //           revenue += room.costPerNight;
-  //         }
-  //       });
-  //       console.log('rev', revenue)
-  //       return revenue;
-  //     }, 0);
-  //     return Number(revenue.toFixed(2));
-  //   }
-
-  // calculatePercentOccupiedToday(bookings, rooms, date) {
-  //   let todayBookings = bookings.filter(
-  //     booking => booking.date === date).length;
-  //   let percentageRoomsOccupiedToday =
-  //     (todayBookings / rooms.length) * 100;
-  //     console.log(percentageRoomsOccupiedToday)
-  //   return Number(percentageRoomsOccupiedToday.toFixed(2));
-  // }
-
    availableRooms() {
-     let todaysBookingByRoomNum = this.todaysBookings.map((booking) => {
+     let todaysBookingByRoomNum = this.searchTodaysBookings().map((booking) => {
        return booking.roomNumber;
      });
      return this.rooms.filter((room) => {
        return !todaysBookingByRoomNum.includes(room.number);
      });
-   }
+  }
+  
+  availableRoomTypeAndDate(date, type) {
+    let availableRoomOnDate = this.availableRooms(date);
+    if (type == 'all rooms') {
+      console.log('if', type)
+      return availableRoomOnDate;
+    } else {
+      console.log('else', type)
+    return availableRoomOnDate.filter((room) => {
+      return room.roomType === type.toLowerCase();
+    });
 
-   availableRoomTypeAndDate(date, type) {
-       let availableRoomOnDate = this.unbookedRooms(date);
-       return availableRoomOnDate.filter((room) => {
-         return room.roomType === type;
-       });
+    }
 
-}
+  }
 }
 
 
