@@ -179,7 +179,11 @@ function bookingTarget(event) {
   console.log('event', event)
   if (event.target.classList.contains('book-me')) {
    let date = document.querySelector('.booking-input').value;
+   let formatedDate = date.split('-').join('/')
    let roomNumber = event.target.value;
+  //  postNewBooking(currentCustomer.id, formatedDate, roomNumber);
+  }
+}
    // currentCustomer.id;
    // write api/ call
    // pass it date, room null, customer id,
@@ -192,16 +196,17 @@ function bookingTarget(event) {
    // manager id to book room
    // 
    // {
-   //   "userID": 29,
+   //   "userID": 1,
    //   "date": "2020/02/25",
    //   "roomNumber": 3,
-   // },
-   }
-
+   // }
 
 
    // add to hotel.bookings
-   }
+
+
+
+
 
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
