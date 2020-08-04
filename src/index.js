@@ -198,7 +198,7 @@ function bookingTarget(event) {
    // {
    //   "userID": 1,
    //   "date": "2020/02/25",
-   //   "roomNumber": 3,
+   //   "roomNumber": 3
    // }
 
   // ? Number(roomNumber)
@@ -214,7 +214,7 @@ function postNewBooking(currentCustomer, date, roomNumber) {
       body: JSON.stringify({
         userID: currentCustomer.id,
         date: date,
-        roomNumber: roomNumber,
+        roomNumber: roomNumber
       })
     })
     .then(response => response.json())
