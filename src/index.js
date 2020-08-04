@@ -12,18 +12,20 @@ import './css/base.scss';
 import Customer from './Customer';
 import Manager from './Manager';
 import Bookings from './Bookings';
+import Hotel from './Hotel';
 
 const moment = require("moment");
 
+let hotel;
 let manager;
 let currentCustomer;
-let hotelData;
+// let hotelData;
 let currentDate = moment().format('YYYY/MM/DD');
 
 getApiData().then(allData => {
-  hotelData = allData;
-  console.log('allData', allData)
-  return allData;
+  hotel = new Hotel(allData.users, allData.rooms, allData.bookings)
+  // console.log('allData', allData)
+  // return allData;
 });
 
 document.querySelector('.search-customer-button').addEventListener('click', setManagerCustomerLookup);
@@ -46,7 +48,7 @@ function handleSubmit(event) {
 // reduce(a, b) => a + b;
 
 function managerLogin(){
-  manager = new Manager(hotelData.users, hotelData.rooms, hotelData.bookings, currentDate);
+  manager = new Manager(hotel.customers, hotel.rooms, hotel.bookings, currentDate);
   hideLogin();
   displayManagerView();
 }
@@ -91,27 +93,27 @@ function customerLogin(customerInput) {
   document.querySelector('.customer-booking-container').classList.remove('hide');
   hideLogin();
   let customerId = customerInput.substring(8);
-  currentCustomer = new Customer(findUserById(customerId), hotelData.bookings, hotelData.rooms);
+  currentCustomer = new Customer(findUserById(customerId), hotel.bookings, hotel.rooms);
   displayCustomerDash();
   // manager will do same thing w currentCustomer
-  // currentCustomer.findBookings(hotelData.bookings);
+  // currentCustomer.findBookings(hotel.bookings);
   console.log(currentCustomer);
 }
 
 function findUserById(id) {
-  return hotelData.users.find(user => user.id == id);
+  return hotel.customers.find(user => user.id == id);
   // use == when strign and number
 }
 
 function findUserByName(name) {
-  return hotelData.users.find(user => user.name.toLowerCase() == name.toLowerCase());
+  return hotel.customers.find(user => user.name.toLowerCase() == name.toLowerCase());
 
 }
 
 function displayCustomerDash() {
-document.querySelector('.customer-name').innerText = `${currentCustomer.name}`;
-displayCustomerFinances();
-displayCustomerBookings();
+  document.querySelector('.customer-name').innerText = `${currentCustomer.name}`;
+  displayCustomerFinances();
+  displayCustomerBookings();
 }
 
 function displayCustomerBookings() {
@@ -130,7 +132,7 @@ function displayCustomerFinances() {
 
 function setManagerCustomerLookup() {
   let name = document.querySelector('.findUser').value;
-  manager.setCurrentCustomer(new Customer(findUserByName(name), hotelData.bookings, hotelData.rooms));
+  manager.setCurrentCustomer(new Customer(findUserByName(name), hotel.bookings, hotel.rooms));
   let customerSearch = document.querySelector('.search-for-customer');
   if (document.getElementById('revenue')) {
     document.getElementById('revenue').remove();
@@ -150,6 +152,29 @@ function logOut() {
   document.querySelector('.login-container').classList.remove('hide');
   document.querySelector('.customer-booking-container').classList.add('hide');
 }
+document.querySelector('.customer-search-dates-button').addEventListener('click', roomAvailablity) 
+
+function roomAvailablity() {
+  let date = document.querySelector('.booking-input').value;
+  console.warn('date', date)
+  let type = document.querySelector('.room-select').value;
+  let hotelRooms = hotel.availableRoomTypeAndDate(date, type)
+  displayAvailableRooms(hotelRooms);
+
+}
+
+function displayAvailableRooms(availableRooms) {
+  let trips = document.querySelector('.available-rooms-container');
+  let available = availableRooms.map(room => {
+    return `<section>${room.number} ${room.roomType}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
+  }).join('')
+  trips.innerHTML = '';
+  trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
+}
+
+
+
+
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
 // know rooms that have been booked, iterate rooms array, grab cost
