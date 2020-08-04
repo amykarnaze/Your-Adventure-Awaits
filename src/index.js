@@ -172,6 +172,54 @@ function displayAvailableRooms(availableRooms) {
   trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
 }
 
+document.querySelector('.available-rooms-container').addEventListener('click', bookingTarget);
+
+function bookingTarget(event) {
+  event.preventDefault();
+  console.log('event', event)
+  if (event.target.classList.contains('book-me')) {
+   let date = document.querySelector('.booking-input').value;
+   let formatedDate = date.split('-').join('/')
+   let roomNumber = event.target.value;
+  //  postNewBooking(currentCustomer.id, formatedDate, roomNumber);
+  }
+}
+   // currentCustomer.id;
+   // write api/ call
+   // pass it date, room null, customer id,
+   // post will give back booking 
+   // make object
+   // whateven im passing in give the values
+   // remove from html
+   // post will give back something and make a message fire and remove from html
+   // manager will pass manager.currentCustomer.id
+   // manager id to book room
+   // 
+   // {
+   //   "userID": 1,
+   //   "date": "2020/02/25",
+   //   "roomNumber": 3
+   // }
+
+  // ? Number(roomNumber)
+
+   // add to hotel.bookings
+   
+function postNewBooking(currentCustomer, date, roomNumber) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userID: currentCustomer.id,
+        date: date,
+        roomNumber: roomNumber
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.error(error))
+}
 
 
 
