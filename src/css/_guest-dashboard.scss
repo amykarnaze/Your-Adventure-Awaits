@@ -1,35 +1,24 @@
 .customer-booking-container {
-  display: flex;
-      flex-direction: column;
-
-  justify-content: space-between;
-
-  padding: 1em;
+  @include flex-customer();
+  flex-direction: column;
 }
 
 .customer-select-dates-container {
-  display: flex;
-  // justify-content: space-between;
-  padding: 1em;
+  @include flex-customer();
 }
 
 .customer-available-rooms-container {
-  display: flex;
-  // justify-content: space-between;
-  padding: 1em;
+  @include flex-customer();
 
 }
 
 .customer-trips-container {
-  display: flex;
+  @include flex-customer();
   flex-direction: column;
-
-  // justify-content: space-between;
   
   .future-reservations-container {
-    // display: flex;
-    // justify-content: space-between;
-    // padding: 1em;
+    @include flex-customer();
+
   }
 }
 
@@ -38,9 +27,7 @@
 }
 
 .customer-finances-container {
-  // display: flex;
-  // justify-content: space-between;
-  // padding: 1em;
+  @include flex-customer();
 
   
   .customer-spending-history-container {

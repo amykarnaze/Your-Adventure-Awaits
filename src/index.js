@@ -34,6 +34,7 @@ loginButton.addEventListener('click', handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
+  document.querySelector('.log-out').classList.remove('hide');
   const userLogin = document.querySelector("#username-input").value;
   let password = document.querySelector("#password-input").value;
   if (userLogin.toLowerCase() === 'manager' && password === 'overlook2020') {
@@ -85,6 +86,7 @@ function displayPercentageBooked() {
 function displayTodaysRevenue() {
   let todaysRevenue = document.querySelector('.revenue-for-today');
   // console.log(manager.todaysRevenue);
+  todaysRevenue.innerHTML = '';
   todaysRevenue.insertAdjacentHTML("afterbegin", 
   `<h1>Today's Revenue: ${manager.todaysRevenue}</h1>`);
 }
@@ -138,7 +140,7 @@ function setManagerCustomerLookup() {
     document.getElementById('revenue').remove();
   }
   let customerData = manager.currentCustomer.bookings.map(booking => {
-    return `<p>name:${manager.currentCustomer.name}    booking date:${booking.date}  booking room: ${booking.roomNumber}</p>`
+    return `<p>name:${manager.currentCustomer.name}    booking date:${booking.date}  booking room: ${booking.roomNumber} booking Id: ${booking.id}</p>`
     // `<h1 id="revenue">Current Customer: ${manager.currentCustomer.name}
     // ${manager.booking}
     // ${manager.currentCustomer.totalAmountSpent}</h1>)`
@@ -146,7 +148,8 @@ function setManagerCustomerLookup() {
   customerSearch.insertAdjacentHTML("afterend", customerData);
   }
 
-const logOutButton = document.querySelector('.log-out').addEventListener('click', logOut);
+document.querySelector('.log-out').addEventListener('click', logOut);
+
 function logOut() {
   document.querySelector('.manager-container-view').classList.add('hide');
   document.querySelector('.login-container').classList.remove('hide');
@@ -166,7 +169,7 @@ function roomAvailablity() {
 function displayAvailableRooms(availableRooms) {
   let trips = document.querySelector('.available-rooms-container');
   let available = availableRooms.map(room => {
-    return `<section>${room.number} ${room.roomType}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
+    return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
   }).join('')
   trips.innerHTML = '';
   trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
@@ -214,7 +217,7 @@ function postNewBooking(currentCustomer, date, roomNumber) {
       body: JSON.stringify({
         userID: currentCustomer.id,
         date: date,
-        roomNumber: roomNumber
+        roomNumber: Number(roomNumber)
       })
     })
     .then(response => response.json())
