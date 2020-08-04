@@ -21,20 +21,20 @@
 
 .total-bookings-for-today {
   justify-content: flex-start;
-    width: 30%;
+    width: $width;
 
 }
   .revenue-for-today {
     border: solid 1em greenyellow;
     // display: flex;
     justify-content: flex-start;
-    width: 30%;
+    width: $width;
   }
 
   .percent-booked-today {
     // display: flex;
     justify-content: flex-start;
-    width: 30%;
+    width: $width;
   }
 
 
