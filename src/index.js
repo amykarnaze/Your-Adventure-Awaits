@@ -201,10 +201,25 @@ function bookingTarget(event) {
    //   "roomNumber": 3,
    // }
 
+  // ? Number(roomNumber)
 
    // add to hotel.bookings
-
-
+   
+function postNewBooking(currentCustomer, date, roomNumber) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userID: currentCustomer.id,
+        date: date,
+        roomNumber: roomNumber,
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.error(error))
+}
 
 
 
