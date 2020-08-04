@@ -111,9 +111,9 @@ function findUserByName(name) {
 }
 
 function displayCustomerDash() {
-document.querySelector('.customer-name').innerText = `${currentCustomer.name}`;
-displayCustomerFinances();
-displayCustomerBookings();
+  document.querySelector('.customer-name').innerText = `${currentCustomer.name}`;
+  displayCustomerFinances();
+  displayCustomerBookings();
 }
 
 function displayCustomerBookings() {
@@ -155,9 +155,26 @@ function logOut() {
 document.querySelector('.customer-search-dates-button').addEventListener('click', roomAvailablity) 
 
 function roomAvailablity() {
-let date = document.querySelector('.booking-input').value;
-let type = document.querySelector('.room-select')
+  let date = document.querySelector('.booking-input').value;
+  console.warn('date', date)
+  let type = document.querySelector('.room-select').value;
+  let hotelRooms = hotel.availableRoomTypeAndDate(date, type)
+  displayAvailableRooms(hotelRooms);
+
 }
+
+function displayAvailableRooms(availableRooms) {
+  let trips = document.querySelector('.available-rooms-container');
+  let available = availableRooms.map(room => {
+    return `<section>${room.number} ${room.roomType}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
+  }).join('')
+  trips.innerHTML = '';
+  trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
+}
+
+
+
+
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
 // know rooms that have been booked, iterate rooms array, grab cost
