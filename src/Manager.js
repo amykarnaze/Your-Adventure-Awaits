@@ -18,9 +18,11 @@ class Manager {
 
   setCurrentCustomer(customer) {
     // let foundCustomer = this.customers.find(customer => customer.name.toLowerCase() === name.toLowerCase())
-    return this.currentCustomer = customer;
+    this.currentCustomer = customer;
 
   }
+
+
 
   // searchCustomerByName(input, customers) {
   //   input = input.toLowerCase();
@@ -52,7 +54,7 @@ console.log('here')
             revenue += room.costPerNight;
           }
         });
-        console.log('rev', revenue)
+        // console.log('rev', revenue)
         return revenue;
       }, 0);
       return Number(revenue.toFixed(2));
@@ -63,7 +65,7 @@ console.log('here')
       booking => booking.date === date).length;
     let percentageRoomsOccupiedToday =
       (todayBookings / rooms.length) * 100;
-      console.log(percentageRoomsOccupiedToday)
+      // console.log(percentageRoomsOccupiedToday)
     return Number(percentageRoomsOccupiedToday.toFixed(2));
   }
 
