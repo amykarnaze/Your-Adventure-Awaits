@@ -172,8 +172,36 @@ function displayAvailableRooms(availableRooms) {
   trips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)
 }
 
+document.querySelector('.available-rooms-container').addEventListener('click', bookingTarget);
+
+function bookingTarget(event) {
+  event.preventDefault();
+  console.log('event', event)
+  if (event.target.classList.contains('book-me')) {
+   let date = document.querySelector('.booking-input').value;
+   let roomNumber = event.target.value;
+   // currentCustomer.id;
+   // write api/ call
+   // pass it date, room null, customer id,
+   // post will give back booking 
+   // make object
+   // whateven im passing in give the values
+   // remove from html
+   // post will give back something and make a message fire and remove from html
+   // manager will pass manager.currentCustomer.id
+   // manager id to book room
+   // 
+   // {
+   //   "userID": 29,
+   //   "date": "2020/02/25",
+   //   "roomNumber": 3,
+   // },
+   }
 
 
+
+   // add to hotel.bookings
+   }
 
 // revenue
 // when know todays bookings, you can use infor to cross ref and get info from rooms
