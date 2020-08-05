@@ -65,7 +65,7 @@ function displayManagerRoomsBooked() {
   manager.calculateTotalBookingsSum();
   manager.todaysBookings.forEach(booking =>
   todaysReservations.insertAdjacentHTML("beforeend", 
-  `<li>room ${booking.roomNumber} is booked</li>
+  `<li>room number: ${booking.roomNumber}</li>
   `)
   )
 }
@@ -149,9 +149,9 @@ function logOut() {
   document.querySelector('.customer-booking-container').classList.add('hide');
 }
 
-let date = document.querySelector('.booking-input').value;
+// let date = document.querySelector('.booking-input').value;
 // or
-// let date = document.querySelector('#date-input').value;
+let date = document.querySelector('#date-input').value;
 
 
 function customerRoomAvaiability() {
