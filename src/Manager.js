@@ -7,6 +7,7 @@ class Manager {
     // customers,
     // this.customers = customers;
     // pass hotel.customers to do math
+    this.rooms = rooms;
     this.currentCustomer = {};
     // this.rooms = rooms;
     this.bookings = bookings;
