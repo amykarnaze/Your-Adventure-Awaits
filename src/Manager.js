@@ -70,7 +70,22 @@ console.log('here')
     return Number(percentageRoomsOccupiedToday.toFixed(2));
   }
 
+  deleteBooking(id) {
+    let deleteBookingObject = {
+      id: Number(id)
+    };
+    let url =
+      "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
+    return fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(deleteBookingObject)
+    }).catch(error => console.log(error))
+  }
 }
+
 
 
 export default Manager;
