@@ -13,21 +13,21 @@
     <section class="login-page-flex" id="login-page-id">
       <article class="login-container">
         <h2>Your Adventure Awaits</h2>
-        <form id="login-form">
-          <input id="username-input" class="login-input" type="username" placeholder="Username">
-          <input id="password-input" class="login-input" type="password" placeholder="Password" value="overlook2020">
+        <form id="login-form" id="login-form-input" aria-label="user login">
+          <input id="username-input" aria-label="username input" class="login-input" type="username" placeholder="Username">
+          <input id="password-input" aria-label="password" class="login-input" type="password" placeholder="Password" value="overlook2020">
           <button type="button" id="login-button" aria-label='Submit login information'>Sign in</button>
         </form>
       </article>
     </section>
     <section class="customer-booking-container hide">
-      <h1 class="user-welcome"></h1>
+      <!-- <h1 class="user-welcome"></h1> -->
       <h2 class="customer-name"></h2>
       <section class="customer-select-dates-container">
         <label class="future-date-text" for="arrival-date-input"><label>
-        <input type="date" class="booking-input" id="customer-date-input" placeholder="mm/dd/yyyy">
+        <input type="date" aria-label="date" class="booking-input" id="customer-date-input" placeholder="mm/dd/yyyy">
         <button type="button" class="customer-search-dates-button" aria-label='Search Availability'>Search availability</button>
-        <select class="room-select" type="text" id="room-filter">
+        <select class="room-select" aria-label="select room type" type="text" id="room-filter">
           <option value="all rooms">All Room Types</option>
           <option value="residential suite">Residential Suite</option>
           <option value="suite">Suite</option>
@@ -53,30 +53,30 @@
       </section>
     </section>
     <section class="manager-container-view hide">
-      <h2 class="manager-header-text"></h2>
+      <!-- <h2 class="manager-header-text"></h2> -->
       <section class="info-today-container">
         <section class="total-bookings-for-today">
-          <h2>Today's Bookings</h2>
+          <!-- <h2>Today's Bookings</h2> -->
         </section>
         <section class="revenue-for-today"></section>
         <section class="percent-booked-today"></section>
       </section>
       <section class="search-for-customer">
         <p>Search For Customer</p>
-        <input type="<text>" class="findUser" value="customer name"/>
+        <input type="<text>" aria-label="customer name" class="findUser" value="customer name"/>
           <button class="search-customer-button aria-label='Find Users'">Find User</button>
           <div class="manager-user-info"></div>
       </section>
           <h4>The following rooms are available for booking:</h4>
       <section class="rooms-available-container">
         <section class="manager-select-dates-container">
-          <label class="future-date-text" for="arrival-date-input">Arrival date:</label>
-          <input type="date" class="booking-input" id="date-input" placeholder="mm/dd/yyyy"/>
+          <label class="future-date-text" for="arrival-date-input" >Arrival date:</label>
+          <input type="date" class="booking-input" id="date-input" aria-label="select date" placeholder="mm/dd/yyyy" />
           <!-- <label class="future-date-text" for="departure-date-input">Departure date:<label>
 <input type="date" class="booking-input" id="departure-date-input" placeholder="mm/dd/yyyy"> -->
-          <button type="button" class="manager-search-dates-button" aria-label='Manager Search Dates Button'>Search
+          <button type="button" class="manager-search-dates-button">Search
             availability</button>
-          <select class="room-select" type="text" id="room-filter">
+          <select class="room-select" type="text" id="room-filter" aria-label="select room">
             <option value="all rooms">All Room Types</option>
             <option value="residential suite">Residential Suite</option>
             <option value="suite">Suite</option>
