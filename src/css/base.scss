@@ -6,11 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 /* This is an example of using Sass, otherwise plain CSS works too*/
 html {
-  height: 100%
+  height: 100%;
+  position: relative;
 }
 
 body {
-  background: $primary-background;
+  background-image: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .4)),
+  url('../images/overlook-login.jpg');
+  background-attachment: fixed; 
+  background-size: cover;
+  background-repeat: no-repeat;
+  // background-position: center;
   margin: 0;
   height: 100%;
 }

@@ -55,7 +55,8 @@ describe('Manager', () => {
         'roomServiceCharges': []
       }
     ];
-    manager = new Manager(customers, rooms, bookings, date);
+    manager = new Manager(rooms, bookings, date);
+    
 });
 
   it('should be a function', function () {
@@ -67,7 +68,8 @@ describe('Manager', () => {
   });
 
   it('should have a property of current customer', function () {
-    expect(manager.currentCustomer).to.be.equal({});
+    manager.setCurrentCustomer(customers[0])
+    expect(manager.currentCustomer.id).to.be.equal(1);
   });
 
   it('should have a property of bookings', function () {
@@ -75,6 +77,7 @@ describe('Manager', () => {
   });
 
   it('should have a property of date', function () {
+    console.log("DATATATATTA", manager.date)
     expect(manager.date).to.be.equal('2020/01/24');
   });
 
