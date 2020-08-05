@@ -128,9 +128,9 @@ function displayCustomerDash() {
 function displayCustomerBookings() {
   let pastReservations = document.querySelector('.past-reservations-container');
   let customerBookings = currentCustomer.bookings.map(booking => {
-    return `<p>Booking Date:${booking.date}</p>`
+    pastReservations.innerHTML += `<section><p>Booking Date:${booking.date}</p>`
   })
-  pastReservations.insertAdjacentHTML("beforeend", customerBookings);
+  // pastReservations.insertAdjacentHTML("beforeend", customerBookings);
 }
 
 function displayCustomerFinances() {
@@ -179,7 +179,6 @@ let type = document.querySelector('.room-select').value;
 function customerRoomAvaiability() {
   let hotelRooms = hotel.availableRoomTypeAndDate(date, type)
   console.warn('date', date)
-  
   customerAvailableRooms(hotelRooms);
 }
 document.querySelector('.manager-search-dates-button').addEventListener('click', managerRoomAvaiability);
@@ -198,7 +197,12 @@ function customerAvailableRooms(availableRooms) {
     alert('not available');
   } else {
     let available = availableRooms.map(room => {
-      return `<section> Room Number: ${room.number} Room Type: ${room.roomType} Bed Size: ${room.bedSize} Number of Beds: ${room.numBeds}<button class="book-me" value=${room.number} type=button>Book me</button></section>`
+      return `<section> 
+      <p>Room Number: ${room.number}</p>
+      <p>Room Type: ${room.roomType}</p> 
+      <p>Bed Size: ${room.bedSize}</p>
+      <p>Number of Beds: ${room.numBeds}</p>
+      <button class="book-me" value=${room.number} type=button>Book me</button></section>`
     }).join('')
     customerTrips.innerHTML = '';
     customerTrips.insertAdjacentHTML('afterbegin', '<h1>These Rooms Are Available for you.</h1>'+available)

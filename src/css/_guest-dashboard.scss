@@ -1,3 +1,10 @@
+* {
+  padding: 5px;
+}
+
+h1, h2 {
+  color: whitesmoke;
+}
 .customer-booking-container {
   @include flex-customer();
   flex-direction: column;
@@ -5,17 +12,28 @@
 
 .customer-select-dates-container {
   @include flex-customer();
+  
 }
 
 .customer-available-rooms-container {
-  @include flex-customer();
+  // @include flex-customer();
+  display: grid;
+  margin-top: 12px;
+  grid-gap: 35px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 
+  section {
+    @include boxshadow();
+    padding: 10px;
+    border-radius: 7px;
+  }
 }
 
 .customer-trips-container {
   @include flex-customer();
   flex-direction: column;
-  
+  // color: whitesmoke;
   .future-reservations-container {
     @include flex-customer();
 
@@ -23,14 +41,29 @@
 }
 
 .past-reservations-container {
+  display: grid;
+  margin-top: 12px;
+  grid-gap: 35px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 
+  section {
+    @include boxshadow();
+    padding: 10px;
+    border-radius: 7px;
+  }
 }
 
 .customer-finances-container {
   @include flex-customer();
+    p {
+    color: whitesmoke;
+    }
+  
+  }
 
   
   .customer-spending-history-container {
     
   }
-}
+
