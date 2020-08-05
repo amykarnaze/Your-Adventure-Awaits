@@ -5,7 +5,6 @@ class Customer {
    this.firstName = this.getFirstName();
    this.bookings = this.findBookings(bookings);
    this.totalAmountSpent = this.findAmountSpent(rooms).toFixed(2);
-   this.booking = [];
   }
 
   getFirstName() {
