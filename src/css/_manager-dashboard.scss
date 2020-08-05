@@ -24,62 +24,44 @@
   padding: 10px;
   justify-content: flex-start;
     width: $width;
-
 }
+
 .revenue-for-today {
   @include boxshadow;
-
-  border: solid .4em ghostwhite;
-  // display: flex;
+  border: solid .4em $text-color;
   justify-content: flex-start;
   width: $width;
 }
 
 .percent-booked-today {
   @include boxshadow;
-
-  // display: flex;
-  justify-content: flex-start;
   width: $width;
 }
 
-
 .rooms-available-container {
   display: flex;
-  color: snow;
-
-  // align-content: space-between;
+  color: $text-color;
 }
 
 .search-for-customer {
-p {
-  color: snow;
+  p {
+    color: $text-color;
+  }
 }
-}
-
 
 .manager-user-info {
-  display: grid;
-  grid-gap: 35px;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  @include cards(); 
   section {
     @include boxshadow();
-    padding: 10px;
-    border-radius: 7px;
+    @include shape();
   }
 }
 
 .manager-display-rooms-container {
-  display: grid;
-  margin-top: 12px;
-  grid-gap: 35px;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  @include cards();
   section {
     @include boxshadow();
-    padding: 10px;
-    border-radius: 7px;
+    @include shape();
   }
 }
 

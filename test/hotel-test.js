@@ -51,7 +51,7 @@ describe('Hotel', () => {
       'roomServiceCharges': []
     }];
     manager = new Manager(customers, rooms, bookings, date);
-    hotel = new Hotel();
+    hotel = new Hotel(customers, rooms, bookings);
   });
 
   it('should be a function', function () {
@@ -73,4 +73,5 @@ describe('Hotel', () => {
   it('should have a property of bookings', function () {
     expect(hotel.bookings.length).to.equal(2);
   });
+  
   });

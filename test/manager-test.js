@@ -50,7 +50,7 @@ describe('Manager', () => {
       }, {
         'id': '5fwrgu4i7k55hl6t5',
         'userID': 43,
-        'date': '2020/01/24',
+        'date': '2020/01/25',
         'roomNumber': 24,
         'roomServiceCharges': []
       }
@@ -77,63 +77,30 @@ describe('Manager', () => {
   });
 
   it('should have a property of date', function () {
-    console.log("DATATATATTA", manager.date)
     expect(manager.date).to.be.equal('2020/01/24');
   });
 
   it('should be able to set current customer', function () {
-    expect(manager.setCurrentCustomer(customers[0])).to.deep.equal(
-      [
-        {
-          id: 1,
-          name: 'Leatha Ullrich'
-        }
-      ]);
+    manager.setCurrentCustomer(customers[0])
+    expect(manager.currentCustomer.id).to.be.equal(1);
     });
 
-  // it('should be able to search customers by name', function () {
-  //   expect(manager.searchCustomerByName('Leatha Ullrich')).to.deep.equal([{
-  //     id: 1,
-  //     name: 'Leatha Ullrich'}]);
-  //   });
-
   it('should be have a property of todays bookings', function () {
-    expect(manager.todaysBookings).to.deep.equal([
-        {
-          'id': '5fwrgu4i7k55hl6t5',
-          'userID': 43,
-          'date': '2020/01/24',
-          'roomNumber': 24,
-          'roomServiceCharges': []
-        }
-      ])
+    expect(manager.todaysBookings).to.deep.equal([]);
   });
-
 
   it('should be have a property of todays Revenue', function () {
-    expect(manager.todaysRevenue).to.equal(0.00);
+    expect(manager.todaysRevenue).to.equal(0);
   });
 
-  // it('should be have a property of percent booked, function () {
-  //   expect(manager.percentBookings).to.deep.equal(
-  //     // [
-  //     //   {
-  //     //     'id': '5fwrgu4i7k55hl6sz',
-  //     //     'userID': 3,
-  //     //     'date': date,
-  //     //     'roomNumber': 15,
-  //     //     'roomServiceCharges': []
-  //     //   }
-  //     // ]
-  //   );
-  // });
+  it('should be have a property of percent booked', function () {
+    expect(manager.percentBookings).to.equal(0)
+  });
 
 
-  // it('should be able to search for total Revenue that day, function () {
-  //   expect(manager.getTodaysRevenue('Leatha Ullrich')).to.deep.equal([{
-  //     id: 1,
-  //     name: 'Leatha Ullrich'}])
-  //   })
+  it('should be able to search for total Revenue that day', function () {
+    expect(manager.getTodaysRevenue(bookings, rooms, date)).to.be.equal(0);
+    })
 });
 
 

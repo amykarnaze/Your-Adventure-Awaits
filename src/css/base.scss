@@ -16,7 +16,6 @@ body {
   background-attachment: fixed; 
   background-size: cover;
   background-repeat: no-repeat;
-  // background-position: center;
   margin: 0;
   height: 100%;
 }
@@ -25,13 +24,10 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 1em;
-  
   .log-out {
     height: 3em;
   }
 }
-
-
 
 .hide {
   display: none;
